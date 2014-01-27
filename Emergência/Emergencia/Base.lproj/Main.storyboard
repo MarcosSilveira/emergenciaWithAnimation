@@ -49,6 +49,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="logar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Cdb-j8-EUE"/>
                                     <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="Ye4-yw-zDe"/>
                                 </connections>
                             </button>
@@ -84,6 +85,10 @@
                         <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="S1e-lw-aZi"/>
+                    <connections>
+                        <outlet property="login" destination="P66-Ic-RQY" id="OOe-w8-YhL"/>
+                        <outlet property="pass" destination="NgE-Yo-iGe" id="DTR-Kr-EBb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,7 +324,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Esd-5I-jcg"/>
-        <segue reference="ZJt-VO-VId"/>
+        <segue reference="Ye4-yw-zDe"/>
+        <segue reference="Lzg-Kz-LtN"/>
     </inferredMetricsTieBreakers>
 </document>

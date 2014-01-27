@@ -7,8 +7,14 @@
 //
 
 #import "DCLoginViewController.h"
+#import "DCConfigs.h"
+#import "DCInicialViewController.h"
 
 @interface DCLoginViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *login;
+@property (weak, nonatomic) IBOutlet UITextField *pass;
+
+@property (nonatomic) DCConfigs *conf;
 
 @end
 
@@ -26,6 +32,7 @@
   UIColor *color = self.view.tintColor;
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
   self.title = @"Login";
+    self.conf=[[DCConfigs alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,5 +40,44 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)logar:(UIButton *)sender {
+    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,self.login.text,self.pass.text];
+    
+    
+    
+    NSURL *urs=[[NSURL alloc] initWithString:ur];
+    NSData* data = [NSData dataWithContentsOfURL:
+                    urs];
+    
+    if(data!=nil){
+        
+        NSError *jsonParsingError = nil;
+        NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+        
+        
+        NSNumber *res=[resultado objectForKey:@"login"];
+        
+        NSNumber *teste=[[NSNumber alloc] initWithInt:1];
+        
+        
+        if([res isEqualToNumber:teste]){
+            /*
+            UIStoryboardSegue *segue
+            [self prepareForSegue:(UIStoryboardSegue *) sender:<#(id)#> sender:sender];
+            //self.oks.text=@"Logado com sucesso"
+             */
+        }else{
+            //self.oks.text=@"Erro no login";
+            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        }
+        
+    }else{
+        //self.oks.text=@"Erro no login";
+        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+    }
+
+}
+
 
 @end
