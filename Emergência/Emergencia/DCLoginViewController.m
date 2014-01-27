@@ -62,11 +62,7 @@
         
         
         if([res isEqualToNumber:teste]){
-            /*
-            UIStoryboardSegue *segue
-            [self prepareForSegue:(UIStoryboardSegue *) sender:<#(id)#> sender:sender];
-            //self.oks.text=@"Logado com sucesso"
-             */
+            [self performSegueWithIdentifier:@"goToInicio" sender:sender];
         }else{
             //self.oks.text=@"Erro no login";
             [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
