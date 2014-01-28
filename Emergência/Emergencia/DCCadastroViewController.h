@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCCadastroViewController : UIViewController
+@interface DCCadastroViewController : UIViewController <UITextFieldDelegate>
 
 @end

@@ -41,6 +41,11 @@
   // Dispose of any resources that can be recreated.
 }
 
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (IBAction)logar:(UIButton *)sender {
     NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,self.login.text,self.pass.text];
     
