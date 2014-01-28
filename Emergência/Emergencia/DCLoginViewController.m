@@ -38,13 +38,14 @@
     {
         // preferencias
         
-        if ([self loginUsuarioComUsuario:savedUserName comSenha:savedPassword])
-        {
+//        if ([self loginUsuarioComUsuario:savedUserName comSenha:savedPassword])
+//        {
             [self performSegueWithIdentifier:@"goToInicio" sender:self];
-        } else {
+//        } else {
             //self.oks.text=@"Erro no login";
-            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
-        }
+//            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+//        }
+        
         
         
     }

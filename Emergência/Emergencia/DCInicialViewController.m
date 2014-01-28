@@ -7,8 +7,12 @@
 //
 
 #import "DCInicialViewController.h"
+#import "DCLoginViewController.h"
 
 @interface DCInicialViewController ()
+@property (strong,nonatomic) NSString *log;
+@property (strong,nonatomic) NSString *psw;
+
 
 @end
 
@@ -38,4 +42,11 @@
   // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)btLogOut
+{
+    
+  // essas strings tem q ser a msm q a do login, p poder zerar elas e dar o log out
+    self.log = @"";
+    self.psw = @"";
+}
 @end

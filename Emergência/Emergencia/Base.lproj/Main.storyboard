@@ -123,6 +123,16 @@
                                     <segue destination="bLl-CC-BeM" kind="push" identifier="goToEmergencia" id="Lzg-Kz-LtN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-5Z-B3E">
+                                <rect key="frame" x="114" y="518" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sair da conta">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btLogOut" destination="Mxl-z6-SRM" eventType="touchUpInside" id="pVf-Rb-3tx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -349,7 +359,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Lzg-Kz-LtN"/>
         <segue reference="0hI-ST-9lq"/>
-        <segue reference="Esd-5I-jcg"/>
     </inferredMetricsTieBreakers>
 </document>
