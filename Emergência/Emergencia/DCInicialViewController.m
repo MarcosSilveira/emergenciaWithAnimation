@@ -26,6 +26,10 @@
   UIColor *color = self.view.tintColor;
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
   self.title = @"Inicial";
+  
+  //Esconde o bota de voltar
+  //TODO: Verificar se o usuário está logado?
+  self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)didReceiveMemoryWarning
