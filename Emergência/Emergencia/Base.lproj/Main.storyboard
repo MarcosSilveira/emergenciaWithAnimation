@@ -35,12 +35,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="39c-5i-mbO"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NgE-Yo-iGe">
                                 <rect key="frame" x="82" y="150" width="218" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="UTv-Ah-sUY"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DJ-cq-ExH">
                                 <rect key="frame" x="170" y="188" width="42" height="30"/>
@@ -50,7 +56,6 @@
                                 </state>
                                 <connections>
                                     <action selector="logar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Cdb-j8-EUE"/>
-                                    <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="Ye4-yw-zDe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D4-Xg-AtG">
@@ -88,6 +93,7 @@
                     <connections>
                         <outlet property="login" destination="P66-Ic-RQY" id="OOe-w8-YhL"/>
                         <outlet property="pass" destination="NgE-Yo-iGe" id="DTR-Kr-EBb"/>
+                        <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="0hI-ST-9lq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -248,18 +254,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h6C-fm-Whi" id="pQz-J1-W3p"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PT1-T6-DAR">
                                 <rect key="frame" x="120" y="141" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h6C-fm-Whi" id="dcT-St-zf7"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e5H-ih-uKg">
                                 <rect key="frame" x="120" y="179" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h6C-fm-Whi" id="mr7-Cj-8NS"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirmação:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWg-Qf-r5y">
                                 <rect key="frame" x="20" y="226" width="92" height="21"/>
@@ -273,6 +288,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h6C-fm-Whi" id="SUY-Tk-a0u"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dn1-ek-yr0">
                                 <rect key="frame" x="126" y="276" width="68" height="30"/>
@@ -281,13 +299,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="ZJt-VO-VId"/>
+                                    <action selector="cadastrar:" destination="h6C-fm-Whi" eventType="touchUpInside" id="Neu-ze-n6H"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="fA4-9y-WAz"/>
+                    <connections>
+                        <outlet property="csenha" destination="Hh4-ND-35i" id="YN7-CB-17K"/>
+                        <outlet property="email" destination="PT1-T6-DAR" id="txD-aa-tGg"/>
+                        <outlet property="login" destination="hiv-q5-yfc" id="Iiw-wg-tpl"/>
+                        <outlet property="senha" destination="e5H-ih-uKg" id="etE-VQ-V75"/>
+                        <segue destination="Mxl-z6-SRM" kind="push" identifier="cadtoInicial" id="Cpz-jf-YxC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMO-BB-FjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -324,7 +349,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ye4-yw-zDe"/>
-        <segue reference="Lzg-Kz-LtN"/>
+        <segue reference="0hI-ST-9lq"/>
+        <segue reference="Esd-5I-jcg"/>
     </inferredMetricsTieBreakers>
 </document>
