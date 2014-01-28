@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *login;
 @property (weak, nonatomic) IBOutlet UITextField *pass;
 
+
 @property (nonatomic) DCConfigs *conf;
 
 @end
@@ -22,23 +23,46 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  
-  [self configuracoesIniciais];
+    [super viewDidLoad];
+    
+    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    
+    
+    
+    
+    
+    [self configuracoesIniciais];
+    
+    if(![savedUserName isEqualToString:@""] && ![savedPassword isEqualToString:@""])
+    {
+        // preferencias
+        
+        if ([self loginUsuarioComUsuario:savedUserName comSenha:savedPassword])
+        {
+            [self performSegueWithIdentifier:@"goToInicio" sender:self];
+        } else {
+            //self.oks.text=@"Erro no login";
+            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        }
+        
+        
+    }
+    
 }
 
 - (void) configuracoesIniciais {
-  
-  UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
-  self.title = @"Login";
+    
+    UIColor *color = self.view.tintColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+    self.title = @"Login";
     self.conf=[[DCConfigs alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
 {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
@@ -47,7 +71,20 @@
 }
 
 - (IBAction)logar:(UIButton *)sender {
-    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,self.login.text,self.pass.text];
+    
+    if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
+       [self performSegueWithIdentifier:@"goToInicio" sender:sender];
+    } else {
+        //self.oks.text=@"Erro no login";
+        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+    }
+    
+}
+
+-(BOOL) loginUsuarioComUsuario:(NSString *)usuario
+                      comSenha:(NSString *)senha {
+    
+    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,usuario,senha];
     
     
     
@@ -55,6 +92,7 @@
     NSData* data = [NSData dataWithContentsOfURL:
                     urs];
     
+    //retorno
     if(data!=nil){
         
         NSError *jsonParsingError = nil;
@@ -65,19 +103,34 @@
         
         NSNumber *teste=[[NSNumber alloc] initWithInt:1];
         
-        
+        //confere
         if([res isEqualToNumber:teste]){
-            [self performSegueWithIdentifier:@"goToInicio" sender:sender];
+            
+            
+            //Checagem de preferencias, saber se já ta logado
+            
+            NSUserDefaults *prefer = [NSUserDefaults standardUserDefaults];
+            
+            [prefer setObject:self.login.text forKey:@"username"];
+            [prefer setObject:self.pass.text forKey:@"password"];
+            
+            [prefer synchronize];
+            
+            return YES;
+            
         }else{
-            //self.oks.text=@"Erro no login";
-            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+            
+            
+            return NO;
         }
         
     }else{
         //self.oks.text=@"Erro no login";
         [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        
+        return NO;
     }
-
+    
 }
 
 
