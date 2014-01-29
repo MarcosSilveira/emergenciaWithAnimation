@@ -123,6 +123,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btLogOut" destination="Mxl-z6-SRM" eventType="touchUpInside" id="pVf-Rb-3tx"/>
+                                    <segue destination="vXZ-lx-hvc" kind="push" identifier="" id="hAI-Te-HHN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -372,7 +373,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Cpz-jf-YxC"/>
+        <segue reference="0hI-ST-9lq"/>
+        <segue reference="hAI-Te-HHN"/>
         <segue reference="Lzg-Kz-LtN"/>
     </inferredMetricsTieBreakers>
 </document>

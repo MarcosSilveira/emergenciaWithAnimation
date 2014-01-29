@@ -11,8 +11,7 @@
 #import "DCInicialViewController.h"
 
 @interface DCLoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *login;
-@property (weak, nonatomic) IBOutlet UITextField *pass;
+
 
 
 @property (nonatomic) DCConfigs *conf;
@@ -28,28 +27,20 @@
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
     
-    
-    
-    
-    
     [self configuracoesIniciais];
     
-    if(![savedUserName isEqualToString:@""] && ![savedPassword isEqualToString:@""])
+    if(savedUserName != nil && savedPassword != nil)
+        
     {
-        // preferencias
-        
-//        if ([self loginUsuarioComUsuario:savedUserName comSenha:savedPassword])
-//        {
-            [self performSegueWithIdentifier:@"goToInicio" sender:self];
-//        } else {
-            //self.oks.text=@"Erro no login";
-//            [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
-//        }
-        
-        
-        
+        [self performSegueWithIdentifier:@"goToInicio" sender:self];
     }
     
+    else
+    {
+        [self logar:self];
+        
+        // arrumar aqq;
+    }
 }
 
 - (void) configuracoesIniciais {
@@ -74,7 +65,7 @@
 - (IBAction)logar:(UIButton *)sender {
     
     if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
-       [self performSegueWithIdentifier:@"goToInicio" sender:sender];
+        [self performSegueWithIdentifier:@"goToInicio" sender:sender];
     } else {
         //self.oks.text=@"Erro no login";
         [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
