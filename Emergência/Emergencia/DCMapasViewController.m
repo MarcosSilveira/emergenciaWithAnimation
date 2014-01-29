@@ -7,8 +7,12 @@
 //
 
 #import "DCMapasViewController.h"
+#import "DCConfigs.h"
+#import "DCPosto.h"
 
 @interface DCMapasViewController ()
+
+@property (nonatomic) DCConfigs *conf;
 
 @end
 
@@ -26,7 +30,50 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [gerenciadorLocalizacao startUpdatingLocation];
     [self OndeEstouAction:NULL];
+    self.conf=[[DCConfigs alloc] init];
+}
+
+-(NSMutableArray *) buscar:(float)lats
+           withlongitude:(float)longi
+                  withraioMeters:(float) raio
+              withPriority:(NSNumber *)prio{
     
+    NSMutableArray *locais=[[NSMutableArray alloc] init];
+    
+    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/buscar.jsp?lat=%f&log=%f&tipo='lol'&prioridade=%@&raio=%f",self.conf.ip,lats,longi,prio,raio];
+
+    
+    
+    NSURL *urs=[[NSURL alloc] initWithString:ur];
+    NSData* data = [NSData dataWithContentsOfURL:
+                    urs];
+    
+    //retorno
+    if(data!=nil){
+        
+        NSError *jsonParsingError = nil;
+        NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+        
+        //OBjeto Array
+        
+        NSArray *res=[resultado objectForKey:@"Locais"];
+        
+        NSDictionary *objo;
+        for(int i=0;i<res.count;i++){
+            objo=[res objectAtIndex:i];
+            DCPosto *posto=[[DCPosto alloc] init];
+            posto.lat=[[objo objectForKey:@"latitude"] floatValue];
+            posto.lat=[[objo objectForKey:@"longitude"] floatValue];
+            posto.nome=[objo objectForKey:@"nome"];
+            posto.endereco=[objo objectForKey:@"endereco"];
+            [locais addObject:posto];
+        }
+        
+    }
+
+    
+    
+    return locais;
 }
 
 - (IBAction)OndeEstouAction:(UIBarButtonItem *)sender {
