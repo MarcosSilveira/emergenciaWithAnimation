@@ -63,12 +63,12 @@
             objo=[res objectAtIndex:i];
             DCPosto *posto=[[DCPosto alloc] init];
             posto.lat=[[objo objectForKey:@"latitude"] floatValue];
-            posto.lat=[[objo objectForKey:@"longitude"] floatValue];
+            posto.log=[[objo objectForKey:@"longitude"] floatValue];
             posto.nome=[objo objectForKey:@"nome"];
             posto.endereco=[objo objectForKey:@"endereco"];
             [locais addObject:posto];
         }
-        
+    
     }
 
     
@@ -99,7 +99,7 @@
 - (void)drawRangeRings: (CLLocationCoordinate2D) where {
     // first, I clear out any previous overlays:
     [_Map1 removeOverlays: [_Map1 overlays]];
-    float range =1000; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
+    float range =2000; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
     MKCircle* innerCircle = [MKCircle circleWithCenterCoordinate: where radius: range];
     innerCircle.title = @"Safe Range";
     
@@ -123,6 +123,17 @@
     MKCoordinateSpan zoom = MKCoordinateSpanMake(0.001,0.001);
     
     MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
+    NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:2000 withPriority:@1];
+    for(int i  = 0; i<postos.count; i++){
+        DCPosto *postoaux = postos[i];
+        MKPointAnnotation *pontoaux = [[MKPointAnnotation alloc] init];
+        pontoaux.title = postoaux.nome;
+        CLLocationCoordinate2D coordenada = CLLocationCoordinate2DMake(postoaux.lat, postoaux.log);
+        pontoaux.coordinate = coordenada;
+        pontoaux.subtitle = postoaux.endereco;
+        [_Map1 addAnnotation:pontoaux];
+    }
+    
     
     
     [self drawRangeRings:newLocation.coordinate];
@@ -145,7 +156,7 @@
     CLLocationCoordinate2D saoLucasCoorde =CLLocationCoordinate2DMake(-30.056085,-51.174413);
     saoLucasPucrs.coordinate = (saoLucasCoorde);
     _cr = [[CLCircularRegion alloc] initWithCenter:ondeEstouAnotacao.coordinate
-                                            radius:1000
+                                            radius:2000
                                         identifier:@"teste"];
     
     
