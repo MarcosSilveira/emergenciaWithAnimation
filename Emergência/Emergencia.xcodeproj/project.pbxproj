@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B535AE61896D14A007CB773 /* DCConfigs.m */; };
 		0B535B231896D8FA007CB773 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B535B221896D8FA007CB773 /* ip.txt */; };
+		0BD2E2A81899663F00B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2A71899663F00B78E51 /* DCPosto.m */; };
 		DDA969391892C43F00CBAB0D /* DCEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */; };
 		DDA9693C1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */; };
 		DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA9693F1896BA1E00CBAB0D /* DCEmergencia.m */; };
@@ -45,6 +46,8 @@
 		0B535AE51896D14A007CB773 /* DCConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCConfigs.h; sourceTree = "<group>"; };
 		0B535AE61896D14A007CB773 /* DCConfigs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCConfigs.m; sourceTree = "<group>"; };
 		0B535B221896D8FA007CB773 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
+		0BD2E2A61899663F00B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
+		0BD2E2A71899663F00B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
 		DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCEmergenciaViewController.h; sourceTree = "<group>"; };
 		DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmergenciaViewController.m; sourceTree = "<group>"; };
 		DDA9693A1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAtendimentoEmergenciaViewController.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				DDA9693F1896BA1E00CBAB0D /* DCEmergencia.m */,
 				0B535AE51896D14A007CB773 /* DCConfigs.h */,
 				0B535AE61896D14A007CB773 /* DCConfigs.m */,
+				0BD2E2A61899663F00B78E51 /* DCPosto.h */,
+				0BD2E2A71899663F00B78E51 /* DCPosto.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 			files = (
 				DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */,
 				DDC969FC18917C7D00A3CEC7 /* DCCadastroViewController.m in Sources */,
+				0BD2E2A81899663F00B78E51 /* DCPosto.m in Sources */,
 				DDA9693C1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m in Sources */,
 				DDC969FF18917CB600A3CEC7 /* DCInicialViewController.m in Sources */,
 				0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */,
