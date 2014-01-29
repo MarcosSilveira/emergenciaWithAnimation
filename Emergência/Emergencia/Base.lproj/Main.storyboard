@@ -123,7 +123,7 @@
                                     <segue destination="bLl-CC-BeM" kind="push" identifier="goToEmergencia" id="Lzg-Kz-LtN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-5Z-B3E">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="92" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-5Z-B3E">
                                 <rect key="frame" x="114" y="518" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sair da conta">
@@ -169,14 +169,14 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWh-cO-kGt">
-                                <rect key="frame" x="139" y="325" width="43" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKS-Mm-WRx">
+                                <rect key="frame" x="144" y="325" width="43" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Enviar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dd8-Hy-cJt" kind="push" identifier="goToAtendimentoEmergencia" id="QiM-Ky-6iW"/>
+                                    <segue destination="Hyt-0v-YWR" kind="push" id="U0S-kZ-jvl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -187,44 +187,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5H-bh-gDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1684" y="-419"/>
-        </scene>
-        <!--Atendimento Emergencia View Controller-->
-        <scene sceneID="zpU-6Y-t10">
-            <objects>
-                <viewController id="dd8-Hy-cJt" customClass="DCAtendimentoEmergenciaViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4Qi-jf-2Yw"/>
-                        <viewControllerLayoutGuide type="bottom" id="nPg-Fd-3Bc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="C8z-PD-wdL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QuI-Zj-sQN">
-                                <rect key="frame" x="0.0" y="136" width="320" height="492"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPC-zi-kaC">
-                                <rect key="frame" x="139" y="95" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lugares encontrados para seu atendimento:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpU-AI-hnF">
-                                <rect key="frame" x="8" y="84" width="339" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="BbZ-Bh-bzX"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kvd-hX-83b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2165" y="-419"/>
         </scene>
         <!--Cadastro View Controller-->
         <scene sceneID="JOK-SF-t9Z">
@@ -350,6 +312,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kF-0v-MhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="266" y="69"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SkX-7L-GUQ">
+            <objects>
+                <viewController id="Hyt-0v-YWR" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O8b-Ym-Mrx"/>
+                        <viewControllerLayoutGuide type="bottom" id="cwa-rc-e1o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gak-Nw-RN6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijc-0O-k2K">
+                                <rect key="frame" x="24" y="107" width="273" height="282"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Hyt-0v-YWR" id="WyH-ZA-hep"/>
+                                </connections>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mSF-Nn-zR6">
+                                <rect key="frame" x="0.0" y="63" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <barButtonItem id="ZrI-XI-ppe"/>
+                                    <barButtonItem style="plain" id="l8X-6g-f8J">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vDV-0n-k03">
+                                            <rect key="frame" x="38" y="8" width="243" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Padrão"/>
+                                                <segment title="Hibrido"/>
+                                                <segment title="Satélite"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="TipoMapaAcao:" destination="Hyt-0v-YWR" eventType="valueChanged" id="ew1-f9-NZ8"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="XQG-Ug-xUP">
+                                <rect key="frame" x="0.0" y="464" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Atualiz. Info. de Localização" id="0Sa-ys-YOf">
+                                        <connections>
+                                            <action selector="OndeEstouAction:" destination="Hyt-0v-YWR" id="oKe-gt-s3o"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Me siga" id="xBu-bW-7um">
+                                        <connections>
+                                            <action selector="follow:" destination="Hyt-0v-YWR" id="Srr-An-Juy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VgT-2s-76Y"/>
+                    <connections>
+                        <outlet property="Map1" destination="ijc-0O-k2K" id="ca1-iA-UIm"/>
+                        <outlet property="OndeEstou" destination="0Sa-ys-YOf" id="WEC-YI-mI7"/>
+                        <outlet property="TIpo" destination="l8X-6g-f8J" id="CnI-g6-I9Z"/>
+                        <outlet property="TipoMapa" destination="vDV-0n-k03" id="Qyz-L4-aVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ej8-r0-lbc" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
