@@ -7,8 +7,11 @@
 //
 
 #import "DCEmergenciaViewController.h"
+#import "DCMapasViewController.h"
 
 @interface DCEmergenciaViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *txtRaio;
 
 @end
 
@@ -32,6 +35,32 @@
   
   _exchangeRates = @[ @0.9922f, @6.5938f, @0.7270f,
                       @0.6206f, @81.57f];
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+  
+  //VERIFICA SE CONTEM ALGUM CARACTER QUE NAO SEJA NUMERO OU O CARACTER '.'
+  NSError *error = NULL;
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^0-9\\.])" options:NSRegularExpressionCaseInsensitive error:&error];
+  
+  NSUInteger numberOfMatches = [regex numberOfMatchesInString: self.txtRaio.text
+                                                      options:0
+                                                        range:NSMakeRange(0, [self.txtRaio.text length])];
+  
+  if (numberOfMatches > 0) {
+    
+    [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Valor do raio incompatível" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    return NO;
+  }
+  return YES;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  
+  DCMapasViewController *viewController = (DCMapasViewController *) segue.destinationViewController;
+  
+  NSDecimal raio = [[NSDecimalNumber decimalNumberWithString: self.txtRaio.text] decimalValue];
+  [viewController setRaio: raio];
 }
 
 - (NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
