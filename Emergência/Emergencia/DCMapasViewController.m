@@ -41,7 +41,7 @@
     
     NSMutableArray *locais=[[NSMutableArray alloc] init];
     
-    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/buscar.jsp?lat=%f&log=%f&tipo='lol'&prioridade=%@&raio=%f",self.conf.ip,lats,longi,prio,raio];
+    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/buscar.jsp?lat=%f&log=%f&tipo='lol'&prioridade=%@&raio=%f",self.conf.ip,lats,longi,prio,self.raio];
 
     
     
@@ -100,7 +100,7 @@
 - (void)drawRangeRings: (CLLocationCoordinate2D) where {
     // first, I clear out any previous overlays:
     [_Map1 removeOverlays: [_Map1 overlays]];
-    float range =2000; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
+    NSDecimal range = self.raio; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
     MKCircle* innerCircle = [MKCircle circleWithCenterCoordinate: where radius: range];
     innerCircle.title = @"Safe Range";
     
@@ -122,9 +122,10 @@
     
     //centralizar o mapa nesta nova localizacao do usuario
     MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
+    float raio2 =
     
     MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
-    NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:2000 withPriority:@1];
+    NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];
     for(int i  = 0; i<postos.count; i++){
         DCPosto *postoaux = postos[i];
 
