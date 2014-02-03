@@ -22,107 +22,98 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
-    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
-    
-    [self configuracoesIniciais];
-    
-    if(savedUserName != nil && savedPassword != nil)
-        
-    {
-        [self performSegueWithIdentifier:@"goToInicio" sender:self];
-    }
-    
-    else
-    {
-        [self logar:self];
-        
-        // arrumar aqq;
-    }
+  [super viewDidLoad];
+  
+  NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+  NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+  
+  [self configuracoesIniciais];
+  
+  if(savedUserName != nil && savedPassword != nil) {
+    [self performSegueWithIdentifier:@"goToInicio" sender:self];
+  }
 }
 
 - (void) configuracoesIniciais {
-    
-    UIColor *color = self.view.tintColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
-    self.title = @"Login";
-    self.conf=[[DCConfigs alloc] init];
+  
+  UIColor *color = self.view.tintColor;
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+  self.title = @"Login";
+  self.conf=[[DCConfigs alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
+  [textField resignFirstResponder];
+  return YES;
 }
 
 - (IBAction)logar:(UIButton *)sender {
-    
-    if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
-        [self performSegueWithIdentifier:@"goToInicio" sender:sender];
-    } else {
-        //self.oks.text=@"Erro no login";
-        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
-    }
-    
+  
+  if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
+    [self performSegueWithIdentifier:@"goToInicio" sender:sender];
+  } else {
+    //self.oks.text=@"Erro no login";
+    [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+  }
+  
 }
 
 -(BOOL) loginUsuarioComUsuario:(NSString *)usuario
                       comSenha:(NSString *)senha {
+  
+  NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,usuario,senha];
+  
+  
+  
+  NSURL *urs=[[NSURL alloc] initWithString:ur];
+  NSData* data = [NSData dataWithContentsOfURL:
+                  urs];
+  
+  //retorno
+  if(data!=nil){
     
-    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,usuario,senha];
+    NSError *jsonParsingError = nil;
+    NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
     
     
+    NSNumber *res=[resultado objectForKey:@"login"];
     
-    NSURL *urs=[[NSURL alloc] initWithString:ur];
-    NSData* data = [NSData dataWithContentsOfURL:
-                    urs];
+    NSNumber *teste=[[NSNumber alloc] initWithInt:1];
     
-    //retorno
-    if(data!=nil){
-        
-        NSError *jsonParsingError = nil;
-        NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-        
-        
-        NSNumber *res=[resultado objectForKey:@"login"];
-        
-        NSNumber *teste=[[NSNumber alloc] initWithInt:1];
-        
-        //confere
-        if([res isEqualToNumber:teste]){
-            
-            
-            //Checagem de preferencias, saber se já ta logado
-            
-            NSUserDefaults *prefer = [NSUserDefaults standardUserDefaults];
-            
-            [prefer setObject:self.login.text forKey:@"username"];
-            [prefer setObject:self.pass.text forKey:@"password"];
-            
-            [prefer synchronize];
-            
-            return YES;
-            
-        }else{
-            
-            
-            return NO;
-        }
-        
+    //confere
+    if([res isEqualToNumber:teste]){
+      
+      
+      //Checagem de preferencias, saber se já ta logado
+      
+      NSUserDefaults *prefer = [NSUserDefaults standardUserDefaults];
+      
+      [prefer setObject:self.login.text forKey:@"username"];
+      [prefer setObject:self.pass.text forKey:@"password"];
+      
+      [prefer synchronize];
+      
+      return YES;
+      
     }else{
-        //self.oks.text=@"Erro no login";
-        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
-        
-        return NO;
+      
+      
+      return NO;
     }
     
+  }else{
+    //self.oks.text=@"Erro no login";
+    [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+    
+    return NO;
+  }
+  
 }
 
 
