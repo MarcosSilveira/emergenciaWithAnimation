@@ -17,4 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *OndeEstou;
 -(void)registerRegionWithCircularOverlay:(MKCircle*) overlay andIdentifier:(NSString*)identifier;
 @property (strong, nonatomic)CLCircularRegion *cr;
+
+@property (nonatomic) NSDecimal raio;
+
 @end
