@@ -9,7 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface DCMapasViewController : UIViewController
+@interface DCMapasViewController : UIViewController<MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map1;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *TIpo;

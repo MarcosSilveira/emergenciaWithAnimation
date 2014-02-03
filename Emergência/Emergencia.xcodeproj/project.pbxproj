@@ -11,6 +11,7 @@
 		0B535B231896D8FA007CB773 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B535B221896D8FA007CB773 /* ip.txt */; };
 		0BD2E2A81899663F00B78E51 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
+		8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */; };
 		8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1D6018996E2500FED19E /* DCMapasViewController.m */; };
 		DDA969391892C43F00CBAB0D /* DCEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */; };
 		DDA9693C1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */; };
@@ -50,6 +51,7 @@
 		0B535B221896D8FA007CB773 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 		0BD2E2A91899700800B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
 		0BD2E2AA1899700800B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
+		8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_ico_dica_carro.png; sourceTree = "<group>"; };
 		8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMapasViewController.h; sourceTree = "<group>"; };
 		8D3C1D6018996E2500FED19E /* DCMapasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMapasViewController.m; sourceTree = "<group>"; };
 		DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCEmergenciaViewController.h; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				DDC969CD1891742B00A3CEC7 /* Emergencia-Info.plist */,
 				DDC969CE1891742B00A3CEC7 /* InfoPlist.strings */,
 				DDC969D11891742B00A3CEC7 /* main.m */,
+				8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */,
 				DDC969D31891742B00A3CEC7 /* Emergencia-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -293,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */,
 				DDC969DE1891742B00A3CEC7 /* Images.xcassets in Resources */,
 				0B535B231896D8FA007CB773 /* ip.txt in Resources */,
 				DDC969D01891742B00A3CEC7 /* InfoPlist.strings in Resources */,
