@@ -10,8 +10,7 @@
 #import "DCLoginViewController.h"
 
 @interface DCInicialViewController ()
-@property (strong,nonatomic) NSString *log;
-@property (strong,nonatomic) NSString *psw;
+
 
 
 @end
@@ -20,33 +19,40 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  
-  [self configuracoesIniciais];
+    [super viewDidLoad];
+    
+    [self configuracoesIniciais];
 }
 
 - (void) configuracoesIniciais {
-  
-  UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
-  self.title = @"Inicial";
-  
-  //Esconde o bota de voltar
-  //TODO: Verificar se o usuário está logado?
-  self.navigationItem.hidesBackButton = YES;
+    
+    UIColor *color = self.view.tintColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+    self.title = @"Inicial";
+    
+    //Esconde o bota de voltar
+    //TODO: Verificar se o usuário está logado?
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)didReceiveMemoryWarning
 {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)btLogOut
 {
+    DCLoginViewController *logon;
     
-  // essas strings tem q ser a msm q a do login, p poder zerar elas e dar o log out
-    self.log = @"";
-    self.psw = @"";
+    logon.login.text = nil;
+    
+    logon.pass.text = nil;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"password"];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
 }
 @end

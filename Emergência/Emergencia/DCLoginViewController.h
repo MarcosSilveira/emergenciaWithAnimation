@@ -10,4 +10,7 @@
 
 @interface DCLoginViewController : UIViewController<UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *login;
+@property (weak, nonatomic) IBOutlet UITextField *pass;
+
 @end
