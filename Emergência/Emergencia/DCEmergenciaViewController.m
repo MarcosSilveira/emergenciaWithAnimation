@@ -22,6 +22,16 @@
   [super viewDidLoad];
   
   [self configuracoesIniciais];
+  
+  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                 initWithTarget:self
+                                 action:@selector(dismissKeyboard)];
+  
+  [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard {
+  [self.txtRaio resignFirstResponder];
 }
 
 - (void) configuracoesIniciais {
@@ -36,6 +46,16 @@
   _exchangeRates = @[ @0.9922f, @6.5938f, @0.7270f,
                       @0.6206f, @81.57f];
 }
+
+/*-(void)textFieldDidEndEditing:(UITextField *)textField {
+  [textField resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+  
+  [textField resignFirstResponder];
+  return YES;
+}*/
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
   
