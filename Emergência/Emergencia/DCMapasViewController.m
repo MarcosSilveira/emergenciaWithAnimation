@@ -20,7 +20,7 @@
     
     CLLocationManager *gerenciadorLocalizacao;
     MKPointAnnotation *ondeEstouAnotacao;
-    MKPointAnnotation *saoLucasPucrs;
+    MKPointAnnotation *pontoaux;
     
 }
 
@@ -31,6 +31,7 @@
     [gerenciadorLocalizacao startUpdatingLocation];
     [self OndeEstouAction:NULL];
     self.conf=[[DCConfigs alloc] init];
+    pontoaux = [[MKPointAnnotation alloc] init];
 }
 
 -(NSMutableArray *) buscar:(float)lats
@@ -63,12 +64,12 @@
             objo=[res objectAtIndex:i];
             DCPosto *posto=[[DCPosto alloc] init];
             posto.lat=[[objo objectForKey:@"latitude"] floatValue];
-            posto.lat=[[objo objectForKey:@"longitude"] floatValue];
+            posto.log=[[objo objectForKey:@"longitude"] floatValue];
             posto.nome=[objo objectForKey:@"nome"];
             posto.endereco=[objo objectForKey:@"endereco"];
             [locais addObject:posto];
         }
-        
+    
     }
 
     
@@ -99,7 +100,7 @@
 - (void)drawRangeRings: (CLLocationCoordinate2D) where {
     // first, I clear out any previous overlays:
     [_Map1 removeOverlays: [_Map1 overlays]];
-    float range =1000; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
+    float range =2000; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
     MKCircle* innerCircle = [MKCircle circleWithCenterCoordinate: where radius: range];
     innerCircle.title = @"Safe Range";
     
@@ -120,9 +121,21 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     
     //centralizar o mapa nesta nova localizacao do usuario
-    MKCoordinateSpan zoom = MKCoordinateSpanMake(0.001,0.001);
+    MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
     
     MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
+    NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:2000 withPriority:@1];
+    for(int i  = 0; i<postos.count; i++){
+        DCPosto *postoaux = postos[i];
+
+        pontoaux.title = postoaux.nome;
+        CLLocationCoordinate2D coordenada = CLLocationCoordinate2DMake(postoaux.lat, postoaux.log);
+        pontoaux.coordinate = coordenada;
+        pontoaux.subtitle = postoaux.endereco;
+        
+        [_Map1 addAnnotation:pontoaux];
+    }
+    
     
     
     [self drawRangeRings:newLocation.coordinate];
@@ -131,21 +144,21 @@
     
     //adicionar uma marcacao no mapa
     //criando o pino
-    ondeEstouAnotacao = [[MKPointAnnotation alloc] init];
-    saoLucasPucrs = [[MKPointAnnotation alloc] init];
+  //  ondeEstouAnotacao = [[MKPointAnnotation alloc] init];
+//    saoLucasPucrs = [[MKPointAnnotation alloc] init];
     //ao alterar alguma informacao que deve ser exibida
-    ondeEstouAnotacao.title = @"Minha localizacao";
-    saoLucasPucrs.title = @"Hospital São Lucas";
+//    ondeEstouAnotacao.title = @"Minha localizacao";
+//    saoLucasPucrs.title = @"Hospital São Lucas";
     // UIView *view = [[UIView alloc] init];
     //view. = @"teste";
     //  saoLucasPucrs.leftCalloutAccessoryView = view;
     
     //onde o pino sera adicionado
     ondeEstouAnotacao.coordinate = newLocation.coordinate;
-    CLLocationCoordinate2D saoLucasCoorde =CLLocationCoordinate2DMake(-30.056085,-51.174413);
-    saoLucasPucrs.coordinate = (saoLucasCoorde);
+//    CLLocationCoordinate2D saoLucasCoorde =CLLocationCoordinate2DMake(-30.056085,-51.174413);
+//    saoLucasPucrs.coordinate = (saoLucasCoorde);
     _cr = [[CLCircularRegion alloc] initWithCenter:ondeEstouAnotacao.coordinate
-                                            radius:1000
+                                            radius:2000
                                         identifier:@"teste"];
     
     
@@ -168,8 +181,8 @@
             
             
             //adiciona o pino no mapa
-            [_Map1 addAnnotation:ondeEstouAnotacao];
-            [_Map1 addAnnotation: saoLucasPucrs];
+           // [_Map1 addAnnotation:ondeEstouAnotacao];
+//            [_Map1 addAnnotation: saoLucasPucrs];
             _Map1.showsPointsOfInterest = YES;
             
         }
@@ -188,6 +201,63 @@
     [gerenciadorLocalizacao stopUpdatingLocation];
     
 }
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    
+    NSString *strPinReuseIdentifier = @"pin";
+    
+    
+    MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
+    
+    if(pin == nil)
+    {
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:strPinReuseIdentifier];
+        
+        UIButton *btEsquerda = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        btEsquerda.backgroundColor = [UIColor redColor];
+        [btEsquerda setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
+        [btEsquerda addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
+        pin.leftCalloutAccessoryView = btEsquerda;
+        pin.canShowCallout = YES;
+        
+    }
+    
+    pin.annotation = annotation;
+    
+    return pin;
+    
+    
+}
+
+-(void)clickLeftBt
+{
+    NSLog(@"CLICOU ESQUERDA");
+    //first create latitude longitude object
+//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude,longitude);
+    
+    //create MKMapItem out of coordinates
+    MKPlacemark* placeMark = [[MKPlacemark alloc] initWithCoordinate:pontoaux.coordinate addressDictionary:nil];
+    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    
+    if([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)])
+    {
+        //using iOS6 native maps app
+        [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
+    }
+    else
+    {
+        //using iOS 5 which has the Google Maps application
+//        NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", latitude, longitude];
+//        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+    }
+    
+//    [placeMark release];
+//    [destination release];
+}
+
+
 //liga ou desliga o modo "me siga"
 - (IBAction)follow:(id)sender {
     if(_Map1.userTrackingMode == NO)
