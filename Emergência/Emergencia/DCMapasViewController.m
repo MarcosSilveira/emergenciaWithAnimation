@@ -206,8 +206,11 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     
+    if([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+        
     NSString *strPinReuseIdentifier = @"pin";
-    
+  //  mapView.showsUserLocation = YES;
     
     MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
     
