@@ -18,6 +18,6 @@
 -(void)registerRegionWithCircularOverlay:(MKCircle*) overlay andIdentifier:(NSString*)identifier;
 @property (strong, nonatomic)CLCircularRegion *cr;
 
-@property (nonatomic) NSDecimal raio;
+@property (nonatomic) float raio;
 
 @end

@@ -70,7 +70,7 @@
   
   DCMapasViewController *viewController = (DCMapasViewController *) segue.destinationViewController;
   
-  NSDecimal raio = [[NSDecimalNumber decimalNumberWithString: self.txtRaio.text] decimalValue];
+  float raio = [self.txtRaio.text floatValue];
   [viewController setRaio: raio];
 }
 
