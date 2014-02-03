@@ -47,15 +47,6 @@
                       @0.6206f, @81.57f];
 }
 
-/*-(void)textFieldDidEndEditing:(UITextField *)textField {
-  [textField resignFirstResponder];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-  
-  [textField resignFirstResponder];
-  return YES;
-}*/
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
   
