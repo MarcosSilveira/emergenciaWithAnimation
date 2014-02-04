@@ -15,14 +15,14 @@
  */
 - (instancetype)initComNome:(NSString *) nome
               ComPrioridade:(NSInteger) prioridade {
-  
-  self = [super init];
-  if (self) {
     
-    self.nome       = nome;
-    self.prioridade = prioridade;
-  }
-  return self;
+    self = [super init];
+    if (self) {
+        
+        self.nome       = nome;
+        self.prioridade = prioridade;
+    }
+    return self;
 }
 
 @end
