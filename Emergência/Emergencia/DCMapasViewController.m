@@ -17,11 +17,11 @@
 @end
 
 @implementation DCMapasViewController{
-    
-    CLLocationManager *gerenciadorLocalizacao;
-    MKPointAnnotation *ondeEstouAnotacao;
-    MKPointAnnotation *pontoaux;
-    
+  
+  CLLocationManager *gerenciadorLocalizacao;
+  MKPointAnnotation *ondeEstouAnotacao;
+  MKPointAnnotation *pontoaux;
+  
 }
 
 - (void)viewDidLoad
@@ -72,31 +72,27 @@
         }
     
     }
-
-    
-    
-    return locais;
+  }
+  return locais;
 }
 
 - (IBAction)OndeEstouAction:(UIBarButtonItem *)sender {
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        //estou verificando se ja existe um location manager alocado
-        if (gerenciadorLocalizacao == nil)
-        {
-            //caso nao exista eu crio um
-            gerenciadorLocalizacao = [[CLLocationManager alloc] init];
-            //objetos da classe CLLocationManager entregam as informacoes sobre a localizacao desejada por delegate
-            gerenciadorLocalizacao.delegate = self;
-        }
-        //solicitando que o locationManager inicie o trabalho de monitorar a localizacao e chamar os metodos delegate nesta classe que foi protocolocada com  CLLocationManagerDelegate (.h)
-        
-        [gerenciadorLocalizacao startUpdatingLocation];
-        
-        
+  
+  if ([CLLocationManager locationServicesEnabled]) {
+    //estou verificando se ja existe um location manager alocado
+    if (gerenciadorLocalizacao == nil) {
+      
+      //caso nao exista eu crio um
+      gerenciadorLocalizacao = [[CLLocationManager alloc] init];
+      
+      //objetos da classe CLLocationManager entregam as informacoes sobre a localizacao desejada por delegate
+      gerenciadorLocalizacao.delegate = self;
     }
-    
+    //solicitando que o locationManager inicie o trabalho de monitorar a localizacao e chamar os metodos delegate nesta classe que foi protocolocada com  CLLocationManagerDelegate (.h)
+    [gerenciadorLocalizacao startUpdatingLocation];
+  }
 }
+
 //desenho do raio de busca de locais próximos
 - (void)drawRangeRings: (CLLocationCoordinate2D) where {
     // first, I clear out any previous overlays:
@@ -109,17 +105,23 @@
 }
 
 //desenhando e colorindo o raio
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay{
-    
-    MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
-    circleR.fillColor = [UIColor blueColor];
-    circleR.alpha = 0.2;
-    
-    return circleR;
-    
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
+  
+  MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
+  circleR.fillColor = [UIColor blueColor];
+  circleR.alpha = 0.2;
+  
+  return circleR;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+  
+  //centralizar o mapa nesta nova localizacao do usuario
+  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
+  
+  MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
+  NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];
+  for (int i  = 0; i < postos.count; i++) {
     
     //centralizar o mapa nesta nova localizacao do usuario
     MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
@@ -204,35 +206,32 @@
 }
 
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+  
+  if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    return nil;
+  }
+  
+  NSString *strPinReuseIdentifier = @"pin";
+  
+  MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
+  
+  if (pin == nil) {
     
-    if([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-        
-    NSString *strPinReuseIdentifier = @"pin";
-  //  mapView.showsUserLocation = YES;
+    pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:strPinReuseIdentifier];
     
-    MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
+    UIButton *btEsquerda = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    btEsquerda.backgroundColor = [UIColor redColor];
+    [btEsquerda setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
+    [btEsquerda addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
     
-    if(pin == nil)
-    {
-        pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:strPinReuseIdentifier];
-        
-        UIButton *btEsquerda = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        btEsquerda.backgroundColor = [UIColor redColor];
-        [btEsquerda setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
-        [btEsquerda addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
-        pin.leftCalloutAccessoryView = btEsquerda;
-        pin.canShowCallout = YES;
-        
-    }
-    
-    pin.annotation = annotation;
-    
-    return pin;
-    
-    
+    pin.leftCalloutAccessoryView = btEsquerda;
+    pin.canShowCallout = YES;
+  }
+  
+  pin.annotation = annotation;
+  
+  return pin;
 }
 
 -(void)clickLeftBt
@@ -264,33 +263,28 @@
 
 //liga ou desliga o modo "me siga"
 - (IBAction)follow:(id)sender {
-    if(_Map1.userTrackingMode == NO)
-        _Map1.userTrackingMode = YES;
-    
-    else
-        _Map1.userTrackingMode = NO;
+  
+  if(_Map1.userTrackingMode == NO)
+    _Map1.userTrackingMode = YES;
+  else
+    _Map1.userTrackingMode = NO;
 }
 
 //definição do tipo de mapa exibido
 - (IBAction)TipoMapaAcao:(id)sender {
-    if (_TipoMapa.selectedSegmentIndex == 0)
-    {
-        _Map1.mapType = MKMapTypeStandard;
-    }
-    else if (_TipoMapa.selectedSegmentIndex == 1)
-    {
-        _Map1.mapType = MKMapTypeHybrid;
-    }
-    else if (_TipoMapa.selectedSegmentIndex == 2)
-    {
-        _Map1.mapType = MKMapTypeSatellite;
-    }
+  
+  if (_TipoMapa.selectedSegmentIndex == 0) {
+    _Map1.mapType = MKMapTypeStandard;
+  } else if (_TipoMapa.selectedSegmentIndex == 1) {
+    _Map1.mapType = MKMapTypeHybrid;
+  } else if (_TipoMapa.selectedSegmentIndex == 2) {
+    _Map1.mapType = MKMapTypeSatellite;
+  }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 @end
