@@ -32,6 +32,7 @@
     [self OndeEstouAction:NULL];
     self.conf=[[DCConfigs alloc] init];
     pontoaux = [[MKPointAnnotation alloc] init];
+    self.raio = self.raio * 1000;
 }
 
 -(NSMutableArray *) buscar:(float)lats
@@ -41,7 +42,7 @@
     
     NSMutableArray *locais=[[NSMutableArray alloc] init];
     
-    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/buscar.jsp?lat=%f&log=%f&tipo='lol'&prioridade=%@&raio=%f",self.conf.ip,lats,longi,prio,self.raio];
+    NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/buscar.jsp?lat=%f&log=%f&tipo='lol'&prioridade=%@&raio=%f",self.conf.ip,lats,longi,prio,raio];
 
     
     
@@ -100,7 +101,7 @@
 - (void)drawRangeRings: (CLLocationCoordinate2D) where {
     // first, I clear out any previous overlays:
     [_Map1 removeOverlays: [_Map1 overlays]];
-    NSDecimal range = self.raio; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
+    float range = self.raio; //[self.rangeCalc currentRange] / 1609.3;//MILES_PER_METER;
     MKCircle* innerCircle = [MKCircle circleWithCenterCoordinate: where radius: range];
     innerCircle.title = @"Safe Range";
     
@@ -122,7 +123,6 @@
     
     //centralizar o mapa nesta nova localizacao do usuario
     MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
-    float raio2 =
     
     MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
     NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];
@@ -133,7 +133,7 @@
         CLLocationCoordinate2D coordenada = CLLocationCoordinate2DMake(postoaux.lat, postoaux.log);
         pontoaux.coordinate = coordenada;
         pontoaux.subtitle = postoaux.endereco;
-        
+        NSLog(@"%f", postoaux.lat);
         [_Map1 addAnnotation:pontoaux];
     }
     
@@ -182,7 +182,7 @@
             
             
             //adiciona o pino no mapa
-           // [_Map1 addAnnotation:ondeEstouAnotacao];
+            [_Map1 addAnnotation:ondeEstouAnotacao];
 //            [_Map1 addAnnotation: saoLucasPucrs];
             _Map1.showsPointsOfInterest = YES;
             
@@ -252,8 +252,8 @@
     }
     else
     {
-        //using iOS 5 which has the Google Maps application
-//        NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", latitude, longitude];
+//        using iOS 5 which has the Google Maps application
+//        NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", pontoaux.coordinate.latitude, pontoaux.coordinate.longitude];
 //        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
     }
     
