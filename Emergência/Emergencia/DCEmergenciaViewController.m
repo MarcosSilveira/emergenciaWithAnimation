@@ -8,10 +8,12 @@
 
 #import "DCEmergenciaViewController.h"
 #import "DCMapasViewController.h"
+#import "DCEmergencia.h"
 
 @interface DCEmergenciaViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *txtRaio;
+@property (strong, nonatomic) NSMutableArray *emergencias;
 
 @end
 
@@ -40,11 +42,24 @@
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
   self.title = @"Emergência";
   
-  _countryNames = @[@"Australia (AUD)", @"China (CNY)",
-                    @"France (EUR)", @"Great Britain (GBP)", @"Japan (JPY)"];
+  [self configurarEmergencias];
+}
+
+- (void) configurarEmergencias {
   
-  _exchangeRates = @[ @0.9922f, @6.5938f, @0.7270f,
-                      @0.6206f, @81.57f];
+  self.emergencias = [[NSMutableArray alloc] init];
+  
+  DCEmergencia *emergencia = [[DCEmergencia alloc] initComNome:@"Respiratório" ComPrioridade:1];
+  [self.emergencias addObject:emergencia];
+  
+  emergencia = [[DCEmergencia alloc] initComNome:@"Cardíaco" ComPrioridade:2];
+  [self.emergencias addObject:emergencia];
+  
+  emergencia = [[DCEmergencia alloc] initComNome:@"Neurológico" ComPrioridade:3];
+  [self.emergencias addObject:emergencia];
+  
+  emergencia = [[DCEmergencia alloc] initComNome:@"Muscular" ComPrioridade:4];
+  [self.emergencias addObject:emergencia];
 }
 
 
@@ -79,13 +94,14 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-  return _countryNames.count;
+  return _emergencias.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
-  return _countryNames[row];
+  
+  return ((DCEmergencia *) [self.emergencias objectAtIndex:row]).nome;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
@@ -93,7 +109,7 @@
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 44)];
   label.textColor = self.view.tintColor;
   label.textAlignment = NSTextAlignmentCenter;
-  label.text = _countryNames[row];
+  label.text = ((DCEmergencia *) [self.emergencias objectAtIndex:row]).nome;
   return label;
 }
 
