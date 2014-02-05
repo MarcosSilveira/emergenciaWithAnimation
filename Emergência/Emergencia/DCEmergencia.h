@@ -13,4 +13,7 @@
 @property (nonatomic, strong) NSString *nome;
 @property NSInteger prioridade;
 
+- (instancetype)initComNome:(NSString *) nome
+              ComPrioridade:(NSInteger) prioridade;
+
 @end
