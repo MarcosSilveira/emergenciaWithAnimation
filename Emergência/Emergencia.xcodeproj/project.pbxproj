@@ -13,6 +13,8 @@
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
 		8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */; };
 		8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1D6018996E2500FED19E /* DCMapasViewController.m */; };
+		B185CA1D18A157E000EE2CCE /* DCContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */; };
+		B185CA2018A15BC800EE2CCE /* DCContatos.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1F18A15BC800EE2CCE /* DCContatos.m */; };
 		DDA969391892C43F00CBAB0D /* DCEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */; };
 		DDA9693C1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */; };
 		DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA9693F1896BA1E00CBAB0D /* DCEmergencia.m */; };
@@ -54,6 +56,10 @@
 		8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_ico_dica_carro.png; sourceTree = "<group>"; };
 		8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMapasViewController.h; sourceTree = "<group>"; };
 		8D3C1D6018996E2500FED19E /* DCMapasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMapasViewController.m; sourceTree = "<group>"; };
+		B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatosViewController.h; sourceTree = "<group>"; };
+		B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCContatosViewController.m; sourceTree = "<group>"; };
+		B185CA1E18A15BC800EE2CCE /* DCContatos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatos.h; sourceTree = "<group>"; };
+		B185CA1F18A15BC800EE2CCE /* DCContatos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCContatos.m; sourceTree = "<group>"; };
 		DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCEmergenciaViewController.h; sourceTree = "<group>"; };
 		DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmergenciaViewController.m; sourceTree = "<group>"; };
 		DDA9693A1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAtendimentoEmergenciaViewController.h; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 				DDA9693F1896BA1E00CBAB0D /* DCEmergencia.m */,
 				0B535AE51896D14A007CB773 /* DCConfigs.h */,
 				0B535AE61896D14A007CB773 /* DCConfigs.m */,
+				B185CA1E18A15BC800EE2CCE /* DCContatos.h */,
+				B185CA1F18A15BC800EE2CCE /* DCContatos.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -162,8 +170,6 @@
 				DDC96A0018917DEA00A3CEC7 /* ViewController */,
 				DDC969D41891742B00A3CEC7 /* DCAppDelegate.h */,
 				DDC969D51891742B00A3CEC7 /* DCAppDelegate.m */,
-				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
-				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
 				DDC969D71891742B00A3CEC7 /* Main.storyboard */,
 				DDC969DD1891742B00A3CEC7 /* Images.xcassets */,
 				DDC969CC1891742B00A3CEC7 /* Supporting Files */,
@@ -209,6 +215,10 @@
 				DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */,
 				DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */,
 				DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */,
+				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
+				B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */,
+				B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */,
+				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
 				DDC969FD18917CB600A3CEC7 /* DCInicialViewController.h */,
 				DDC969FE18917CB600A3CEC7 /* DCInicialViewController.m */,
 				DDC969FA18917C7D00A3CEC7 /* DCCadastroViewController.h */,
@@ -326,9 +336,11 @@
 				8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */,
 				DDA9693C1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m in Sources */,
 				DDC969FF18917CB600A3CEC7 /* DCInicialViewController.m in Sources */,
+				B185CA1D18A157E000EE2CCE /* DCContatosViewController.m in Sources */,
 				0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */,
 				DDC969D21891742B00A3CEC7 /* main.m in Sources */,
 				DDC969DC1891742B00A3CEC7 /* DCLoginViewController.m in Sources */,
+				B185CA2018A15BC800EE2CCE /* DCContatos.m in Sources */,
 				DDC969D61891742B00A3CEC7 /* DCAppDelegate.m in Sources */,
 				DDA969391892C43F00CBAB0D /* DCEmergenciaViewController.m in Sources */,
 			);

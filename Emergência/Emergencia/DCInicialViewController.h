@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DCInicialViewController : UIViewController
+
+@property NSMutableArray *listaContatos;
+
 - (IBAction)btLogOut;
 
 
