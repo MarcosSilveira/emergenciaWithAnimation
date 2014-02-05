@@ -13,7 +13,11 @@
 @property (strong, nonatomic) NSString *nome;
 @property (strong, nonatomic) NSString *telefone;
 @property (strong, nonatomic) NSString *usuario;
+@property (nonatomic) NSInteger identificador;
+@property (nonatomic) NSInteger identificadorAmigo;
 
 @property BOOL aprovado;
+
+-(BOOL) salvarComIPServidor: (NSString *) ipServidor;
 
 @end

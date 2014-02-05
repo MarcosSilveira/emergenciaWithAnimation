@@ -23,9 +23,9 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  
-  [self configuracoesIniciais];
+    [super viewDidLoad];
+    
+    [self configuracoesIniciais];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
@@ -34,17 +34,17 @@
 }
 
 - (void) configuracoesIniciais {
-  
-  UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
-  self.title = @"Cadastro";
+    
+    UIColor *color = self.view.tintColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+    self.title = @"Cadastro";
     self.conf=[[DCConfigs alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
 {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -77,11 +77,11 @@
             
             
             if([res isEqualToNumber:teste]){
-               //OK
+                //OK
                 [[[UIAlertView alloc] initWithTitle:@"Cadastro" message:@"Cadastro efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
                 [self performSegueWithIdentifier:@"cadtoInicial" sender:sender];
             }else{
-               //ERRO
+                //ERRO
                 [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
             }
             
@@ -90,7 +90,7 @@
             [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
         }
         
-
+        
     }else{
         [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Senha não confere" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
     }
