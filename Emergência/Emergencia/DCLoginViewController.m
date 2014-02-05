@@ -84,10 +84,10 @@
     
     NSNumber *res=[resultado objectForKey:@"login"];
     
-    NSNumber *teste=[[NSNumber alloc] initWithInt:1];
+    NSNumber *teste=[[NSNumber alloc] initWithInt:0];
     
     //confere
-    if([res isEqualToNumber:teste]){
+    if(![res isEqualToNumber:teste]){
       
       
       //Checagem de preferencias, saber se já ta logado
@@ -96,6 +96,7 @@
       
       [prefer setObject:self.login.text forKey:@"username"];
       [prefer setObject:self.pass.text forKey:@"password"];
+        //Salvar o conteudo de res
       
       [prefer synchronize];
       
