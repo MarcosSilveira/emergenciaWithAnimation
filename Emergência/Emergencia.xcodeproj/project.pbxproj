@@ -12,6 +12,7 @@
 		0BD2E2A81899663F00B78E51 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
 		8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */; };
+		8D2F94E418A2A89A000448EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2F94E318A2A89A000448EC /* MessageUI.framework */; };
 		8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1D6018996E2500FED19E /* DCMapasViewController.m */; };
 		B185CA1D18A157E000EE2CCE /* DCContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */; };
 		B185CA2018A15BC800EE2CCE /* DCContatos.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1F18A15BC800EE2CCE /* DCContatos.m */; };
@@ -54,6 +55,7 @@
 		0BD2E2A91899700800B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
 		0BD2E2AA1899700800B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
 		8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_ico_dica_carro.png; sourceTree = "<group>"; };
+		8D2F94E318A2A89A000448EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMapasViewController.h; sourceTree = "<group>"; };
 		8D3C1D6018996E2500FED19E /* DCMapasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMapasViewController.m; sourceTree = "<group>"; };
 		B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatosViewController.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2F94E418A2A89A000448EC /* MessageUI.framework in Frameworks */,
 				DDC96A02189181BB00A3CEC7 /* MapKit.framework in Frameworks */,
 				DDC969C81891742B00A3CEC7 /* CoreGraphics.framework in Frameworks */,
 				DDC969CA1891742B00A3CEC7 /* UIKit.framework in Frameworks */,
@@ -154,6 +157,7 @@
 		DDC969C41891742B00A3CEC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D2F94E318A2A89A000448EC /* MessageUI.framework */,
 				DDC96A01189181BB00A3CEC7 /* MapKit.framework */,
 				DDC969C51891742B00A3CEC7 /* Foundation.framework */,
 				DDC969C71891742B00A3CEC7 /* CoreGraphics.framework */,
