@@ -219,9 +219,9 @@
 				DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */,
 				DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */,
 				DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */,
-				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
 				B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */,
 				B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */,
+				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
 				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
 				DDC969FD18917CB600A3CEC7 /* DCInicialViewController.h */,
 				DDC969FE18917CB600A3CEC7 /* DCInicialViewController.m */,
@@ -281,6 +281,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Acácio Veit Schneider";
 				TargetAttributes = {
+					DDC969C11891742B00A3CEC7 = {
+						DevelopmentTeam = T5N5TT4E82;
+					};
 					DDC969E21891742B00A3CEC7 = {
 						TestTargetID = DDC969C11891742B00A3CEC7;
 					};
@@ -473,10 +476,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Emergencia/Emergencia-Prefix.pch";
 				INFOPLIST_FILE = "Emergencia/Emergencia-Info.plist";
 				PRODUCT_NAME = Emergencia;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -486,10 +492,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Emergencia/Emergencia-Prefix.pch";
 				INFOPLIST_FILE = "Emergencia/Emergencia-Info.plist";
 				PRODUCT_NAME = Emergencia;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
