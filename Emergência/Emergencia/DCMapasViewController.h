@@ -8,8 +8,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface DCMapasViewController : UIViewController<MKMapViewDelegate>
+@interface DCMapasViewController : UIViewController<MKMapViewDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map1;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *TIpo;

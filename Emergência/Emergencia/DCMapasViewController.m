@@ -21,7 +21,8 @@
   CLLocationManager *gerenciadorLocalizacao;
   MKPointAnnotation *ondeEstouAnotacao;
   MKPointAnnotation *pontoaux;
-  
+    MFMessageComposeViewController *mensagem;
+    
 }
 
 - (void)viewDidLoad
@@ -38,6 +39,14 @@
   }
   
   self.raio = self.raio * 1000;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	// Let the device know we want to receive push notifications
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    return YES;
 }
 
 -(NSMutableArray *) buscar:(float)lats
@@ -81,7 +90,12 @@
   return locais;
 }
 
+
+
+
 - (IBAction)OndeEstouAction:(UIBarButtonItem *)sender {
+
+    
   
   if ([CLLocationManager locationServicesEnabled]) {
     //estou verificando se ja existe um location manager alocado
@@ -251,5 +265,7 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

@@ -7,12 +7,19 @@
 //
 
 #import "DCAppDelegate.h"
+#import "DCLoginViewController.h"
 
 @implementation DCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    
+    
     return YES;
 }
 							
@@ -26,6 +33,21 @@
 {
   // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+  
+    NSString *pushId = [[[[newDeviceToken description]
+                          stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                         stringByReplacingOccurrencesOfString:@">" withString:@""]
+                        stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"%@", pushId);
+    
+    
+    //chamar WS passando usuario e token
+    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

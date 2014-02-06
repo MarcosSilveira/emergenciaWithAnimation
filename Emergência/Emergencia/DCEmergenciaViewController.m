@@ -10,6 +10,7 @@
 #import "DCMapasViewController.h"
 #import "DCEmergencia.h"
 
+
 @interface DCEmergenciaViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *txtRaio;
@@ -30,6 +31,8 @@
                                  action:@selector(dismissKeyboard)];
   
   [self.view addGestureRecognizer:tap];
+
+    _configs = [[DCConfigs alloc] init];
 }
 
 -(void)dismissKeyboard {
@@ -117,6 +120,34 @@
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+- (IBAction)Solicitar:(id)sender {
+    
+    NSLog(@"Solocitando");
+    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&token=%@",self.configs.ip,@"testando o push",@"e572041a3715cc17c7de31a17a178a585af6d6bddc78bee23c1d93a8cd9b1852"];
+    NSURL *urs=[[NSURL alloc] initWithString:ur];
+    NSData* data = [NSData dataWithContentsOfURL:
+                    urs];
+    
+    //retorno
+    if(data!=nil){
+        
+        NSError *jsonParsingError = nil;
+        NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+        
+        
+        NSNumber *res=[resultado objectForKey:@"enviado"];
+        
+        NSNumber *teste=[[NSNumber alloc] initWithInt:0];
+        
+        //confere
+        if(![res isEqualToNumber:teste]){
+            NSLog(@"ok");
+        }
+    }
+    
+    
+    
 }
 
 @end
