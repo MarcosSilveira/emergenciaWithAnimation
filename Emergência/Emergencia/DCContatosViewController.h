@@ -10,4 +10,7 @@
 
 @interface DCContatosViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *contacts;
+
 @end
+
