@@ -39,10 +39,6 @@
   }
   
   self.raio = self.raio * 1000;
-    ////teste para mensagem
-    mensagem.body = @"teste";
-    mensagem.recipients = @"91774855";
-    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
