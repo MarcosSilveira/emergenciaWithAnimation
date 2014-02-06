@@ -10,6 +10,7 @@
 #import "DCMapasViewController.h"
 #import "DCEmergencia.h"
 
+
 @interface DCEmergenciaViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *txtRaio;
@@ -30,6 +31,8 @@
                                  action:@selector(dismissKeyboard)];
   
   [self.view addGestureRecognizer:tap];
+
+    _configs = [[DCConfigs alloc] init];
 }
 
 -(void)dismissKeyboard {
@@ -117,6 +120,11 @@
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+- (IBAction)Solicitar:(id)sender {
+    
+    
+    
 }
 
 @end

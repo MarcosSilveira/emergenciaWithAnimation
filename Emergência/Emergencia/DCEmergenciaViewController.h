@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCConfigs.h"
 
 @interface DCEmergenciaViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSArray *countryNames;
 @property (strong, nonatomic) NSArray *exchangeRates;
-
+@property (strong,nonatomic) DCConfigs *configs;
 @end
