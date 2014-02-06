@@ -60,4 +60,31 @@
 }
 
 
+-(BOOL)editarComIPServidor: (NSString *) ipServidor {
+  
+  //URL UTILIZADA PARA EDITAR UM CONTATO NO SERVIDOR
+  NSString *urlServidor = @"http://%@:8080/Emergencia/editar.jsp?id=%d&nome=%@&tel=%@";
+  
+  NSString *urlEditarContato = [NSString stringWithFormat: urlServidor, ipServidor, self.identificador, self.nome, self.telefone];
+  
+  NSURL *urlRequest = [[NSURL alloc] initWithString: urlEditarContato];
+  NSData *data = [NSData dataWithContentsOfURL: urlRequest];
+  
+  if (data != nil) {
+    
+    NSError *jsonParsingError = nil;
+    NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+    
+    NSNumber *idUsuario = [resultado objectForKey:@"editar"];
+    NSNumber *testeUsuario = [[NSNumber alloc] initWithInt:0];
+    
+    if ([idUsuario isEqualToNumber:testeUsuario]) {
+      return NO;
+    }
+    return YES;
+  }
+  
+  return NO;
+}
+
 @end

@@ -19,5 +19,6 @@
 @property BOOL aprovado;
 
 -(BOOL) salvarComIPServidor: (NSString *) ipServidor;
+-(BOOL) editarComIPServidor: (NSString *) ipServidor;
 
 @end

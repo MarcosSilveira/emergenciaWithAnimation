@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DCContatosViewController.h"
+#import "DCContatos.h"
 
 @interface DCNovoContatoViewController : UIViewController
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtNome;
 
 @property (strong, nonatomic) DCContatosViewController *previousViewController;
+@property (strong, nonatomic) DCContatos *contato;
 
 - (IBAction)salvarContat;
 
