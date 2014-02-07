@@ -24,7 +24,7 @@
 {
   [super viewDidLoad];
   self.conf = [[DCConfigs alloc] init];
-  
+    
   if (self.contato != nil) {
     
     self.txtNome.text = self.contato.nome;
@@ -33,15 +33,27 @@
     
     self.txtUser.enabled = NO;
   }
+
 }
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_txtNome resignFirstResponder];
+    [_txtTelefone resignFirstResponder];
+    [_txtUser resignFirstResponder];
+    
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
 - (IBAction)salvarContat {
-  
-  DCContatos *contato;
+    
+    DCContatos *contato;
   
   //ADICIONA UM CONTATO NOVO
   if (self.contato == nil) {
