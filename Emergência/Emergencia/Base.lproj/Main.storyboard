@@ -559,7 +559,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Padrão"/>
-                                                <segment title="Hibrido"/>
+                                                <segment title="Híbrido"/>
                                                 <segment title="Satélite"/>
                                             </segments>
                                             <connections>
