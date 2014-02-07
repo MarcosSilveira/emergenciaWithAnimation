@@ -41,8 +41,8 @@
 
 - (void) configuracoesIniciais {
   
-  UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+ // UIColor *color = self.view.tintColor;
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.title = @"Emergência";
   
   [self configurarEmergencias];
