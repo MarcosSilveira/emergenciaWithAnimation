@@ -8,6 +8,7 @@
 
 #import "DCInicialViewController.h"
 #import "DCLoginViewController.h"
+#import "DCReachability.h"
 
 @interface DCInicialViewController ()
 
@@ -18,77 +19,78 @@
 
 @implementation DCInicialViewController
 
-    Reachability *connectionTest;
+DCReachability *connectionTest;
 UIAlertView *nconnection;
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    [self configuracoesIniciais];
-    [self testeDeConeccao];
-    _userLogado.text = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
-    
-    
-    
+  [super viewDidLoad];
+  
+  [self configuracoesIniciais];
+  [self testeDeConeccao];
+  _userLogado.text = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+  
+  
+  
 }
-// verificacao se o server está online
 
--(void) testeDeConeccao{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
-    connectionTest = [Reachability reachabilityForInternetConnection];
-    [connectionTest startNotifier];
+// verificacao se o server está online
+-(void) testeDeConeccao {
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
+  connectionTest = [DCReachability reachabilityForInternetConnection];
+  [connectionTest startNotifier];
+  
+  NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];
+  if(remoteHostStatus == NotReachable) {
     
-    NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];    
-    if(remoteHostStatus == NotReachable) {
-        NSLog(@"no");
-        nconnection = [[UIAlertView alloc] initWithTitle:@"Sem conexão" message:@"Não foi possível conectar aos servidores no momento. Verifique sua conexão com a internet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [nconnection show];
-    }
-    else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
-    else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
+    nconnection = [[UIAlertView alloc] initWithTitle:@"Sem conexão" message:@"Não foi possível conectar aos servidores no momento. Verifique sua conexão com a internet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [nconnection show];
+  }
 }
+
 - (void) handleNetworkChange:(NSNotification *)notice
 {
-    
-    NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];
-    
-    if(remoteHostStatus == NotReachable) {NSLog(@"no");}
-    else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
-    else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
+  
+  NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];
+  
+  if(remoteHostStatus == NotReachable) {NSLog(@"no");}
+  else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
+  else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
 }
 
 - (void) configuracoesIniciais {
-    
-    UIColor *color = self.view.tintColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
-    self.title = @"Inicial";
-    
-    //Esconde o bota de voltar
-    //TODO: Verificar se o usuário está logado?
-    self.navigationItem.hidesBackButton = YES;
-
+  
+  UIColor *color = self.view.tintColor;
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: color}];
+  self.title = @"Inicial";
+  
+  //Esconde o bota de voltar
+  //TODO: Verificar se o usuário está logado?
+  self.navigationItem.hidesBackButton = YES;
+  
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 
 - (IBAction)btLogOut
 {
-    DCLoginViewController *logon;
-    
-    logon.login.text = nil;
-    
-    logon.pass.text = nil;
-    
-    [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"password"];
-    
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
+  DCLoginViewController *logon;
+  
+  logon.login.text = nil;
+  
+  logon.pass.text = nil;
+  
+  [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"username"];
+  [[NSUserDefaults standardUserDefaults] setObject:logon.login.text forKey:@"password"];
+  
+  [[NSUserDefaults standardUserDefaults]synchronize];
+  
 }
 
 @end
