@@ -22,13 +22,13 @@
   MKPointAnnotation *ondeEstouAnotacao;
   MKPointAnnotation *pontoaux;
     MFMessageComposeViewController *mensagem;
+    CLAuthorizationStatus *teste;
     
 }
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
   [gerenciadorLocalizacao startUpdatingLocation];
   [self OndeEstouAction:NULL];
   self.conf=[[DCConfigs alloc] init];
@@ -39,6 +39,7 @@
   }
   
   self.raio = self.raio * 1000;
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

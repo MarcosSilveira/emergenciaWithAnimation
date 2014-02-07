@@ -14,6 +14,7 @@
 		8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */; };
 		8D2F94E418A2A89A000448EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2F94E318A2A89A000448EC /* MessageUI.framework */; };
 		8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1D6018996E2500FED19E /* DCMapasViewController.m */; };
+		8DABFA2018A40DE500AD5407 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DABFA1F18A40DE500AD5407 /* Reachability.m */; };
 		B185CA1D18A157E000EE2CCE /* DCContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */; };
 		B185CA2018A15BC800EE2CCE /* DCContatos.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA1F18A15BC800EE2CCE /* DCContatos.m */; };
 		B185CA2318A29CAC00EE2CCE /* DCNovoContatoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B185CA2218A29CAC00EE2CCE /* DCNovoContatoViewController.m */; };
@@ -59,6 +60,8 @@
 		8D2F94E318A2A89A000448EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMapasViewController.h; sourceTree = "<group>"; };
 		8D3C1D6018996E2500FED19E /* DCMapasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMapasViewController.m; sourceTree = "<group>"; };
+		8DABFA1E18A40DE500AD5407 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../../../Downloads/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
+		8DABFA1F18A40DE500AD5407 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../../../Downloads/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 		B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatosViewController.h; sourceTree = "<group>"; };
 		B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCContatosViewController.m; sourceTree = "<group>"; };
 		B185CA1E18A15BC800EE2CCE /* DCContatos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatos.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				DDC969FB18917C7D00A3CEC7 /* DCCadastroViewController.m */,
 				DDC969DA1891742B00A3CEC7 /* DCLoginViewController.h */,
 				DDC969DB1891742B00A3CEC7 /* DCLoginViewController.m */,
+				8DABFA1E18A40DE500AD5407 /* Reachability.h */,
+				8DABFA1F18A40DE500AD5407 /* Reachability.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				B185CA1D18A157E000EE2CCE /* DCContatosViewController.m in Sources */,
 				0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */,
 				DDC969D21891742B00A3CEC7 /* main.m in Sources */,
+				8DABFA2018A40DE500AD5407 /* Reachability.m in Sources */,
 				B185CA2318A29CAC00EE2CCE /* DCNovoContatoViewController.m in Sources */,
 				DDC969DC1891742B00A3CEC7 /* DCLoginViewController.m in Sources */,
 				B185CA2018A15BC800EE2CCE /* DCContatos.m in Sources */,

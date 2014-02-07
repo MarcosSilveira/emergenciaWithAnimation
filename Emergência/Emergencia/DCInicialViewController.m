@@ -11,17 +11,50 @@
 
 @interface DCInicialViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *userLogado;
 
 
 @end
 
 @implementation DCInicialViewController
 
+    Reachability *connectionTest;
+UIAlertView *nconnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self configuracoesIniciais];
+    [self testeDeConeccao];
+    _userLogado.text = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    
+    
+    
+}
+// verificacao se o server está online
+
+-(void) testeDeConeccao{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
+    connectionTest = [Reachability reachabilityForInternetConnection];
+    [connectionTest startNotifier];
+    
+    NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];    
+    if(remoteHostStatus == NotReachable) {
+        NSLog(@"no");
+        nconnection = [[UIAlertView alloc] initWithTitle:@"Sem conexão" message:@"Não foi possível conectar aos servidores no momento. Verifique sua conexão com a internet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [nconnection show];
+    }
+    else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
+    else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
+}
+- (void) handleNetworkChange:(NSNotification *)notice
+{
+    
+    NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];
+    
+    if(remoteHostStatus == NotReachable) {NSLog(@"no");}
+    else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
+    else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
 }
 
 - (void) configuracoesIniciais {
@@ -33,6 +66,7 @@
     //Esconde o bota de voltar
     //TODO: Verificar se o usuário está logado?
     self.navigationItem.hidesBackButton = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,4 +90,5 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     
 }
+
 @end
