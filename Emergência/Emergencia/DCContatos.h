@@ -16,7 +16,7 @@
 @property (nonatomic) NSInteger identificador;
 @property (nonatomic) NSInteger identificadorAmigo;
 
-@property BOOL aprovado;
+@property (nonatomic) NSInteger aprovado;
 
 -(BOOL) salvarComIPServidor: (NSString *) ipServidor;
 -(BOOL) editarComIPServidor: (NSString *) ipServidor;

@@ -42,7 +42,6 @@
   NSURL *urlRequest = [[NSURL alloc] initWithString: urlBuscarContatos];
   NSData *data = [NSData dataWithContentsOfURL: urlRequest];
   
-  
   //retorno
   if (data != nil) {
     
@@ -61,7 +60,7 @@
       
       contato.identificador = [[objo objectForKey:@"id"] integerValue];
       contato.identificadorAmigo = [[objo objectForKey:@"idamigo"] integerValue];
-      contato.aprovado = [[objo objectForKey:@"status"] boolValue];
+      contato.aprovado = [[objo objectForKey:@"status"] integerValue];
       contato.nome = [objo objectForKey:@"nome"];
       contato.telefone = [objo objectForKey:@"tel"];
       contato.usuario = [objo objectForKey:@"login"];
@@ -78,11 +77,61 @@
       
       contato.identificador = [[oJsonAceitar objectForKey:@"id"] integerValue];
       contato.identificadorAmigo = [[oJsonAceitar objectForKey:@"idamigo"] integerValue];
-      contato.aprovado = [[oJsonAceitar objectForKey:@"status"] boolValue];
+      contato.aprovado = [[oJsonAceitar objectForKey:@"status"] integerValue];
       contato.nome = [oJsonAceitar objectForKey:@"nome"];
       contato.telefone = [oJsonAceitar objectForKey:@"tel"];
+      contato.usuario = [oJsonAceitar objectForKey:@"login"];
       
       [self.contatosAceitar addObject:contato];
+    }
+  }
+}
+
+- (IBAction)onChangeSwitch:(UISwitch *)sender {
+  
+  UITableViewCell *cell = (UITableViewCell *) [[[sender superview] superview] superview];
+  
+  if (sender.on) {
+    
+    BOOL aceitou = NO;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    DCContatos *contato = [self.contatosAceitar objectAtIndex:indexPath.row];
+    NSString *urlServidor = @"http://%@:8080/Emergencia/aceitar.jsp?id=%d";
+    NSString *urlAceitarContato = [NSString stringWithFormat: urlServidor, self.config.ip, contato.identificador];
+    
+    NSURL *urlRequest = [[NSURL alloc] initWithString: urlAceitarContato];
+    NSData *data = [NSData dataWithContentsOfURL: urlRequest];
+    
+    if (data != nil) {
+      
+      NSError *jsonParsingError = nil;
+      NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+      
+      NSNumber *res = [resultado objectForKey:@"Aceitar"];
+      NSNumber *testeAceitar = [[NSNumber alloc] initWithInt:0];
+      
+      if (![res isEqualToNumber:testeAceitar]) {
+        aceitou = YES;
+      }
+    }
+    
+    if (aceitou) {
+      
+      [self.contatosAceitar removeObject:contato];
+      
+      [self.tableView beginUpdates];
+      if (self.contatosAceitar.count == 0) {
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      } else {
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      }
+      
+      [self.tableView endUpdates];
+    } else {
+      [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível aceitar o contato. Tente novamente mais tarde." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show ];
     }
   }
 }
@@ -183,7 +232,7 @@
     lblContato.text = @"Nenhum contato adicionado.";
     return cell;
   } else if (indexPath.section == 0 && _contatosAceitar.count == 0) {
-
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     lblContato.text = @"Nenhuma aprovação pendente.";
     return cell;
@@ -192,14 +241,20 @@
   DCContatos *contato;
   
   if (indexPath.section == 1) {
+    
     contato = (DCContatos *)[_contacts objectAtIndex:indexPath.row];
+    
+    NSString *texto = contato.nome;
+    if (contato.aprovado == 1) {
+      texto = [NSString stringWithFormat:@"%@ - Em aprovação", texto];
+    }
+    lblContato.text = texto;
   } else {
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     contato = (DCContatos *)[_contatosAceitar objectAtIndex:indexPath.row];
+    lblContato.text = contato.usuario;
   }
-  
-  lblContato.text = contato.nome;
   cell.tag = indexPath.row;
   
   return cell;
