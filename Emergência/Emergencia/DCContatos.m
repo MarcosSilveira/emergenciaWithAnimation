@@ -22,7 +22,16 @@
         self.nome     = nome;
         self.telefone = telefone;
         self.usuario  = user;
-        self.aprovado = NO;
+        self.aprovado = 1;
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+      self.aprovado = 1;
     }
     return self;
 }
@@ -60,7 +69,7 @@
 }
 
 
--(BOOL)editarComIPServidor: (NSString *) ipServidor {
+-(BOOL) editarComIPServidor: (NSString *) ipServidor {
   
   //URL UTILIZADA PARA EDITAR UM CONTATO NO SERVIDOR
   NSString *urlServidor = @"http://%@:8080/Emergencia/editar.jsp?id=%d&nome=%@&tel=%@";
