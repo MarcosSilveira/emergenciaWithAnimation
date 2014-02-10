@@ -11,6 +11,7 @@
 @interface DCContatosViewController : UITableViewController
 
 @property (strong, nonatomic) NSMutableArray *contacts;
+@property UILabel *lblContato;
 
 @end
 

@@ -18,7 +18,7 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-    
+    self.window.tintColor = [UIColor colorWithRed:(107/255.0) green:0 blue:(2/255.0) alpha:1];
     
     return YES;
 }

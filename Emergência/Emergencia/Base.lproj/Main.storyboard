@@ -330,7 +330,6 @@
                                 <rect key="frame" x="126" y="276" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cadastrar">
-                                    <color key="titleColor" red="0.89901069970000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -630,7 +629,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="hAI-Te-HHN"/>
-        <segue reference="0hI-ST-9lq"/>
+        <segue reference="Cpz-jf-YxC"/>
         <segue reference="Lzg-Kz-LtN"/>
         <segue reference="GWl-Sy-20g"/>
     </inferredMetricsTieBreakers>
