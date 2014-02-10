@@ -36,6 +36,19 @@
     
 }
 
+//LIMITA O TAMANHO DO TEXTFIELD
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+  
+  if (![textField isEqual:self.txtTelefone]) {
+    return YES;
+  }
+  
+  if (range.location > 13) {
+    return NO;
+  }
+  
+  return YES;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCContatosViewController : UITableViewController
+@interface DCContatosViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *contacts;
-@property UILabel *lblContato;
 
 @end
 
