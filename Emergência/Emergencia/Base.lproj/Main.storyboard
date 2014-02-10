@@ -576,7 +576,6 @@
                                                 <segment title="Híbrido"/>
                                                 <segment title="Satélite"/>
                                             </segments>
-                                            <color key="tintColor" red="0.89901069970000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="TipoMapaAcao:" destination="Hyt-0v-YWR" eventType="valueChanged" id="ew1-f9-NZ8"/>
                                             </connections>
@@ -588,14 +587,14 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Atualiz. Info. de Localização" id="0Sa-ys-YOf">
-                                        <color key="tintColor" red="0.89901069970000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem title="Atualizar localização" id="0Sa-ys-YOf">
+                                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="OndeEstouAction:" destination="Hyt-0v-YWR" id="oKe-gt-s3o"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Me siga" id="xBu-bW-7um">
-                                        <color key="tintColor" red="0.89901069970000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="follow:" destination="Hyt-0v-YWR" id="Srr-An-Juy"/>
                                         </connections>
