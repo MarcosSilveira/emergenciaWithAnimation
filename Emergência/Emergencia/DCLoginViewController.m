@@ -43,7 +43,7 @@
 {
     
     //UIColor *color = self.view.tintColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName:[UIColor blackColor] }];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0], NSForegroundColorAttributeName:[UIColor blackColor] }];
     
     self.title = @"Login";
     self.conf=[[DCConfigs alloc] init];
