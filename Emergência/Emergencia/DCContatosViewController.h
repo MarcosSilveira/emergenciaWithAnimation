@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCContatosViewController : UITableViewController <UIAlertViewDelegate>
+@interface DCContatosViewController : UITableViewController <UIAlertViewDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) NSMutableArray *contacts;
 
