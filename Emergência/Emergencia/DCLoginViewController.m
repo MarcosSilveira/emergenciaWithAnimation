@@ -23,20 +23,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
-    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
-    
+    //
+    //    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    //    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    //
     
     [self configuracoesIniciais];
     
-    if(savedUserName != nil && savedPassword != nil) {
-        [self performSegueWithIdentifier:@"goToInicio" sender:self];
-    }
+    //    if(savedUserName != nil && savedPassword != nil) {
+    //        [self performSegueWithIdentifier:@"goToInicio" sender:self];
+    //    }
     
     // NAO PODE TER BACK BUTTON
     self.navigationItem.hidesBackButton = YES;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    
+    if(savedUserName != nil && savedPassword != nil) {
+        [self performSegueWithIdentifier:@"goToInicio" sender:self];
+    }
 }
 
 - (void) configuracoesIniciais

@@ -218,6 +218,7 @@
     
     pin.leftCalloutAccessoryView = btEsquerda;
     pin.canShowCallout = YES;
+      pin.image = [UIImage imageNamed:@"teste.png"];
   }
   
   pin.annotation = annotation;

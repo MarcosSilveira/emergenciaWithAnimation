@@ -12,5 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *login;
 @property (weak, nonatomic) IBOutlet UITextField *pass;
-
+@property(weak,nonatomic) CLLocationCoordinate2D *coordernada;
 @end
