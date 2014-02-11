@@ -17,7 +17,11 @@
 
 @property (strong, nonatomic) DCConfigs *config;
 @property (strong, nonatomic) NSMutableArray *contatosAceitar;
+@property (strong, nonatomic) NSMutableArray *resultadoBusca;
 @property (strong, nonatomic) NSIndexPath *indexPathContatoExcluir;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property BOOL pesquisando;
 
 @end
 
@@ -48,6 +52,40 @@
   self.indexPathContatoExcluir = [self.tableView indexPathForCell:cell];
 }
 
+//AO ALTERAR TEXTO DA SEARCH BAR
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  
+  if (searchText.length > 0) {
+    
+    self.pesquisando = YES;
+    [self pesquisar];
+  } else {
+    
+    self.pesquisando = NO;
+    [self.tableView reloadData];
+  }
+}
+
+//AO CLICAR NO BOTAO DE CANCELAR A PESQUISA
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+  
+  self.pesquisando = NO;
+  
+  [self.searchBar setText:@""];
+  [self.searchBar resignFirstResponder];
+  [self.tableView reloadData];
+}
+
+//PESQUISA CONTATOS ATRAVEZ DA SEARCH BAR
+- (void) pesquisar {
+
+  [self.resultadoBusca removeAllObjects];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"nome CONTAINS [cd] %@", self.searchBar.text];
+  self.resultadoBusca = [[self.contacts filteredArrayUsingPredicate:predicate] mutableCopy];
+  
+  [self.tableView reloadData];
+}
+
 //VERIFICA QUAL BOTÃO DO ALERT VIEW QUE FOI CLICADO
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   
@@ -61,6 +99,7 @@
   }
 }
 
+//EXCLUI UM CONTATO
 - (void) excluirContato {
   
   if (self.indexPathContatoExcluir != nil) {
@@ -160,6 +199,7 @@
   }
 }
 
+//AO ALTERAR VALOR DO SWITCH QUE APROVA CONTATOS
 - (IBAction)onChangeSwitch:(UISwitch *)sender {
   
   UITableViewCell *cell = (UITableViewCell *) [[[sender superview] superview] superview];
@@ -209,12 +249,14 @@
   }
 }
 
+//CONFIGURAÇÕES INICIAIS DA TELA
 - (void) configuracoesIniciais
 {
   self.title = @"Contatos";
   self.contacts = [[NSMutableArray alloc]init];
   self.config = [[DCConfigs alloc] init];
   self.contatosAceitar = [[NSMutableArray alloc] init];
+  self.resultadoBusca = [[NSMutableArray alloc] init];
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
@@ -233,7 +275,14 @@
   
   if ([segue.identifier isEqualToString:@"goToDetalhesContato"]) {
     
-    DCContatos *contato = (DCContatos *) [_contacts objectAtIndex:((UITableViewCell *)sender).tag];
+    DCContatos *contato;
+    
+    //VERIFICA SE ESTA PESQUISANDO CONTATOS
+    if (!self.pesquisando) {
+      contato = (DCContatos *) [_contacts objectAtIndex:((UITableViewCell *)sender).tag];
+    } else {
+      contato = (DCContatos *) [_resultadoBusca objectAtIndex:((UITableViewCell *)sender).tag];
+    }
     DCNovoContatoViewController *viewController = (DCNovoContatoViewController *) segue.destinationViewController;
     
     viewController.contato = contato;
@@ -244,8 +293,9 @@
   }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
+  
+  //CADA VEZ QUE APARECER A VIEW, RECARREGA OS DADOS DA TABLE VIEW
   [self.tableView reloadData];
 }
 
@@ -275,10 +325,12 @@
   
   if (section == 1) {
     
-    if (_contacts.count == 0) {
+    if (_contacts.count == 0 && !self.pesquisando) {
+      return 1;
+    } else if (_resultadoBusca.count == 0 && self.pesquisando) {
       return 1;
     }
-    return _contacts.count;
+    return self.pesquisando ? _resultadoBusca.count : _contacts.count;
   } else {
     
     if (_contatosAceitar.count == 0) {
@@ -292,9 +344,10 @@
   
   static NSString *CellIdentifier;
   
-  if (indexPath.section == 1 && _contacts.count == 0) {
-    CellIdentifier = @"Cell3";
-  } else if (indexPath.section == 0 && _contatosAceitar.count == 0) {
+  if ((indexPath.section == 1 && _contacts.count == 0 && !self.pesquisando) ||
+      (indexPath.section == 0 && _contatosAceitar.count == 0) ||
+      (indexPath.section == 1 && _resultadoBusca.count == 0 && self.pesquisando)) {
+    
     CellIdentifier = @"Cell3";
   } else if (indexPath.section == 1) {
     CellIdentifier = @"Cell";
@@ -306,7 +359,7 @@
   
   UILabel *lblContato = (UILabel *) [cell viewWithTag:10];
   
-  if (indexPath.section == 1 && _contacts.count == 0) {
+  if (indexPath.section == 1 && _contacts.count == 0 && !self.pesquisando) {
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     lblContato.text = @"Nenhum contato adicionado.";
@@ -316,13 +369,22 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     lblContato.text = @"Nenhuma aprovação pendente.";
     return cell;
+  } else if (indexPath.section == 1 && _resultadoBusca.count == 0 && self.pesquisando) {
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    lblContato.text = @"Nenhum contato encontrado.";
+    return cell;
   }
   
   DCContatos *contato;
   
   if (indexPath.section == 1) {
     
-    contato = (DCContatos *)[_contacts objectAtIndex:indexPath.row];
+    if (!self.pesquisando) {
+      contato = (DCContatos *)[_contacts objectAtIndex:indexPath.row];
+    } else {
+      contato = (DCContatos *)[_resultadoBusca objectAtIndex:indexPath.row];
+    }
     
     NSString *texto = contato.nome;
     if (contato.aprovado == 1) {
