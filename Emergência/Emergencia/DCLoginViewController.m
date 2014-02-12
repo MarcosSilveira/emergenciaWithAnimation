@@ -9,7 +9,7 @@
 #import "DCLoginViewController.h"
 #import "DCConfigs.h"
 #import "DCInicialViewController.h"
-
+#import "DCInicialViewController.h"
 @interface DCLoginViewController ()
 
 
@@ -46,9 +46,15 @@
     
     if(savedUserName != nil && savedPassword != nil) {
         [self performSegueWithIdentifier:@"goToInicio" sender:self];
+        
     }
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"goToInicio"]) {
+        DCInicialViewController *inicial = (DCInicialViewController *)segue.destinationViewController;
+        inicial.coordenada = _coordenada;
+    }
+}
 - (void) configuracoesIniciais
 {
     

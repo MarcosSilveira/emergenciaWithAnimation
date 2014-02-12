@@ -39,16 +39,17 @@
   }
   
   self.raio = self.raio * 1000;
+   
+    if(self.coordenada.latitude !=0 && self.coordenada.longitude !=0){
+        MKPointAnnotation *amigo;
+        amigo.coordinate = self.coordenada;
+        amigo.title = @"amigo";
+        [_Map1 addAnnotation:amigo];
+    }
     
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	// Let the device know we want to receive push notifications
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    
-    return YES;
-}
+
 
 -(NSMutableArray *) buscar:(float)lats
              withlongitude:(float)longi

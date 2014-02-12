@@ -21,5 +21,5 @@
 @property (strong, nonatomic)CLCircularRegion *cr;
 
 @property (nonatomic) float raio;
-
+@property (nonatomic) CLLocationCoordinate2D coordenada;
 @end

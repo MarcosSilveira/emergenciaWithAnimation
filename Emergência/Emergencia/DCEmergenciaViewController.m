@@ -9,6 +9,7 @@
 #import "DCEmergenciaViewController.h"
 #import "DCMapasViewController.h"
 #import "DCEmergencia.h"
+#import "DCMapasViewController.h"
 
 
 @interface DCEmergenciaViewController ()
@@ -46,7 +47,12 @@
   self.title = @"Emergência";
   
   [self configurarEmergencias];
+    if(self.coordenada.latitude!=0 && self.coordenada.longitude !=0)
+        [self performSegueWithIdentifier:@"goToMapas" sender:self];
+
 }
+
+
 
 - (void) configurarEmergencias {
   
@@ -90,6 +96,12 @@
   
   float raio = [self.txtRaio.text floatValue];
   [viewController setRaio: raio];
+   
+    if ([segue.identifier isEqualToString:@"goToMapas"]) {
+        DCMapasViewController  *mapas = (DCMapasViewController *)segue.destinationViewController;
+        mapas.coordenada = _coordenada;
+    }
+    
 }
 
 - (NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {

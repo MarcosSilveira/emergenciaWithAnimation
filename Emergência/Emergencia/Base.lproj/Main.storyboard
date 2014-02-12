@@ -209,7 +209,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Hyt-0v-YWR" kind="push" id="U0S-kZ-jvl"/>
+                                    <segue destination="Hyt-0v-YWR" kind="push" identifier="goToMapas" id="U0S-kZ-jvl"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raio (km):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P7v-MK-9Px">
@@ -647,9 +647,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hAI-Te-HHN"/>
-        <segue reference="Cpz-jf-YxC"/>
         <segue reference="Lzg-Kz-LtN"/>
+        <segue reference="0hI-ST-9lq"/>
+        <segue reference="hAI-Te-HHN"/>
         <segue reference="GWl-Sy-20g"/>
     </inferredMetricsTieBreakers>
 </document>

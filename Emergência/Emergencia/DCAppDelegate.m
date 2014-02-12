@@ -28,8 +28,7 @@
     float latitude = [[userInfo objectForKey:@"lat"] floatValue];
     float longitude =[[userInfo objectForKey:@"log"]floatValue];
     MKPointAnnotation *amigo;
-    CLLocationCoordinate2D coordenada = CLLocationCoordinate2DMake(latitude, longitude);
-    amigo.coordinate = coordenada;
+    amigo.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     
     
     UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
@@ -37,7 +36,8 @@
     
     
     DCLoginViewController *dcvc = (DCLoginViewController *)navController.viewControllers[0];
-    dcvc.coordenanda = coordenada;
+    dcvc.coordenada = CLLocationCoordinate2DMake(latitude, longitude);
+    
     
 }
 
