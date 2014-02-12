@@ -247,6 +247,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="J3P-mv-N25"/>
                     <connections>
+                        <outlet property="pickers" destination="ALJ-50-liN" id="cz6-EY-49L"/>
                         <outlet property="txtRaio" destination="F2i-VX-eFY" id="aFd-PV-ch2"/>
                     </connections>
                 </viewController>

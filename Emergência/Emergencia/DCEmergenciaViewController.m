@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtRaio;
 @property (strong, nonatomic) NSMutableArray *emergencias;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickers;
 
 @end
 
@@ -151,15 +152,30 @@ float longi;
 }
 - (IBAction)Solicitar:(id)sender {
     
+     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     NSLog(@"Solocitando");
     
-    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    //self.pickers
+    
+    //Montar a mensagem
+    NSString *msm=[[NSString alloc]init];
+    
+    
+    
+    NSInteger sele=[self.pickers selectedRowInComponent:self.pickers.tag];
+    
+    DCEmergencia *emer=self.emergencias[sele];
+    
+    msm=[msm stringByAppendingFormat:@"o usuario:%@ está solicitando sua ajuda, com uma ermergência: %@",savedUserName,emer.nome];
+    
+    //NSLog(@"%@",msm);
+   
     
     //NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%@&log=%@",self.configs.ip,@"testando o push",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
     
     
     //COlocar a posiçao atual
-    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,lat,longi];
+    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,msm,savedUserName,lat,longi];
     NSLog(@"%@",[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSURL *urs = [[NSURL alloc] initWithString:[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
     NSData* data = [NSData dataWithContentsOfURL:urs];
@@ -181,6 +197,7 @@ float longi;
         //confere
         if(![res isEqualToNumber:teste]){
             //Colocar Alert
+            [[[UIAlertView alloc] initWithTitle:@"Enviado" message:@"Mensagens enviadas para seus contatos" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
         }
     }
     
