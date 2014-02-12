@@ -10,6 +10,7 @@
 #import "DCConfigs.h"
 #import "DCInicialViewController.h"
 #import "DCInicialViewController.h"
+#import "DCAppDelegate.h"
 @interface DCLoginViewController ()
 
 
@@ -91,7 +92,7 @@
                       comSenha:(NSString *)senha {
     
     NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,usuario,senha];
-    
+    DCAppDelegate *tokn;
     
     
     NSURL *urs=[[NSURL alloc] initWithString:ur];
@@ -120,6 +121,7 @@
             [prefer setObject:self.login.text forKey:@"username"];
             [prefer setObject:self.pass.text forKey:@"password"];
             [prefer setObject:res forKey:@"id"];
+            [prefer setObject:tokn.pushId forKey:@"token"];
             //Salvar o conteudo de res
             
             [prefer synchronize];
