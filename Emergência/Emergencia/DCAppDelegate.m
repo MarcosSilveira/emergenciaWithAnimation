@@ -54,48 +54,22 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
     
-    NSString *pushId = [[[[newDeviceToken description]
-                          stringByReplacingOccurrencesOfString:@"<" withString:@""]
-                         stringByReplacingOccurrencesOfString:@">" withString:@""]
-                        stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"%@", pushId);
+    _pushId = [[[[newDeviceToken description]
+                 stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                stringByReplacingOccurrencesOfString:@">" withString:@""]
+               stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"%@", _pushId);
+    
+    [[NSUserDefaults standardUserDefaults]setObject:_pushId forKey:@"token"];
     
     
     //chamar WS passando usuario e token
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    NSString *savedToken = [[NSUserDefaults standardUserDefaults]stringForKey:@"token"];
     
-    
-    //Aqui deve atualizar o token ao contato
-    if(savedUserName!=nil){
-        DCConfigs *config=[[DCConfigs alloc] init];
-        
-        NSString* newStr = [[NSString alloc] initWithData:newDeviceToken
-                                                  encoding:NSUTF8StringEncoding];
-        
-        NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/vincular.jsp?login=%@&token=%@",config.ip,savedUserName,pushId];
-        NSLog(@"URL: %@",ur);
-        
-        
-        NSURL *urs = [[NSURL alloc] initWithString:ur];
-        NSData* data = [NSData dataWithContentsOfURL:urs];
-        if (data != nil) {
-            
-            NSError *jsonParsingError = nil;
-            NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-            
-            //OBjeto Array
-            
-            NSNumber *res = [resultado objectForKey:@"vincular"];
-            NSNumber *teste=[[NSNumber alloc] initWithInt:1];
-            
-            
-            if([res isEqualToNumber:teste]){
-                NSLog(@"Cadastro ok");
-            }
-        }
-    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

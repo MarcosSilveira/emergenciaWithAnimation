@@ -184,8 +184,8 @@
 			children = (
 				DDA9693D1896B9E600CBAB0D /* Model */,
 				DDC96A0018917DEA00A3CEC7 /* ViewController */,
-				DDC969D41891742B00A3CEC7 /* DCAppDelegate.h */,
 				8DAAD2ED18A515690064683F /* Icon.png */,
+				DDC969D41891742B00A3CEC7 /* DCAppDelegate.h */,
 				DDC969D51891742B00A3CEC7 /* DCAppDelegate.m */,
 				8DAAD2E318A511120064683F /* Icon-settings.png */,
 				DDC969D71891742B00A3CEC7 /* Main.storyboard */,
