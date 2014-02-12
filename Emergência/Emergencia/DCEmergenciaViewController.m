@@ -124,13 +124,23 @@
 - (IBAction)Solicitar:(id)sender {
     
     NSLog(@"Solocitando");
-    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&token=%@",self.configs.ip,@"testando o push",@"e572041a3715cc17c7de31a17a178a585af6d6bddc78bee23c1d93a8cd9b1852"];
-    NSURL *urs=[[NSURL alloc] initWithString:ur];
-    NSData* data = [NSData dataWithContentsOfURL:
-                    urs];
+    
+    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    
+    //NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%@&log=%@",self.configs.ip,@"testando o push",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+    
+    
+    //COlocar a posiçao atual
+    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,-50.30,-30.20];
+    NSLog(@"%@",[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    NSURL *urs = [[NSURL alloc] initWithString:[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
+    NSData* data = [NSData dataWithContentsOfURL:urs];
+    
     
     //retorno
     if(data!=nil){
+        
+        NSLog(@"Aqui");
         
         NSError *jsonParsingError = nil;
         NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
@@ -142,12 +152,14 @@
         
         //confere
         if(![res isEqualToNumber:teste]){
-            NSLog(@"ok");
+            //Colocar Alert
         }
     }
     
     
     
 }
+
+
 
 @end
