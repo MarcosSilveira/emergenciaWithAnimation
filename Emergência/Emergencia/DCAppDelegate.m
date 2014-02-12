@@ -66,6 +66,35 @@
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     
     
+    //Aqui deve atualizar o token ao contato
+    if(savedUserName!=nil){
+        DCConfigs *config=[[DCConfigs alloc] init];
+        
+        NSString* newStr = [[NSString alloc] initWithData:newDeviceToken
+                                                  encoding:NSUTF8StringEncoding];
+        
+        NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/vincular.jsp?login=%@&token=%@",config.ip,savedUserName,newStr];
+        NSLog(@"URL: %@",ur);
+        
+        
+        NSURL *urs = [[NSURL alloc] initWithString:ur];
+        NSData* data = [NSData dataWithContentsOfURL:urs];
+        if (data != nil) {
+            
+            NSError *jsonParsingError = nil;
+            NSDictionary *resultado = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+            
+            //OBjeto Array
+            
+            NSNumber *res = [resultado objectForKey:@"vincular"];
+            NSNumber *teste=[[NSNumber alloc] initWithInt:1];
+            
+            
+            if([res isEqualToNumber:teste]){
+                NSLog(@"Cadastro ok");
+            }
+        }
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
