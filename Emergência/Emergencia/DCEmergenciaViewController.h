@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DCConfigs.h"
 #import "DCMapasViewController.h"
+#import <CoreLocation/CoreLocation.h>
+
 @interface DCEmergenciaViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSArray *countryNames;

@@ -8,6 +8,7 @@
 
 #import "DCAppDelegate.h"
 #import "DCLoginViewController.h"
+#import "DCConfigs.h"
 #import "DCMapasViewController.h"
 
 @implementation DCAppDelegate
@@ -73,7 +74,7 @@
         NSString* newStr = [[NSString alloc] initWithData:newDeviceToken
                                                   encoding:NSUTF8StringEncoding];
         
-        NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/vincular.jsp?login=%@&token=%@",config.ip,savedUserName,newStr];
+        NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/vincular.jsp?login=%@&token=%@",config.ip,savedUserName,pushId];
         NSLog(@"URL: %@",ur);
         
         

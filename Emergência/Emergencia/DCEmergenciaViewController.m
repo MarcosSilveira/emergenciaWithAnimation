@@ -21,10 +21,16 @@
 
 @implementation DCEmergenciaViewController
 
+
+CLLocationManager *gerenciadorLocalizacao;
+float lat;
+float longi;
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+    
+  [gerenciadorLocalizacao startUpdatingLocation];
   [self configuracoesIniciais];
   
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -35,6 +41,16 @@
 
     _configs = [[DCConfigs alloc] init];
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    lat = newLocation.coordinate.latitude;
+    longi = newLocation.coordinate.longitude;
+    
+    
+}
+
+
 
 -(void)dismissKeyboard {
   [self.txtRaio resignFirstResponder];
@@ -143,7 +159,7 @@
     
     
     //COlocar a posiçao atual
-    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,-50.30,-30.20];
+    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,lat,longi];
     NSLog(@"%@",[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSURL *urs = [[NSURL alloc] initWithString:[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
     NSData* data = [NSData dataWithContentsOfURL:urs];
