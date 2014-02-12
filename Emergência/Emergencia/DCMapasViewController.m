@@ -42,6 +42,7 @@
    
     if(self.coordenada.latitude !=0 && self.coordenada.longitude !=0){
         MKPointAnnotation *amigo;
+        amigo = [[MKPointAnnotation alloc] init];
         amigo.coordinate = self.coordenada;
         amigo.title = @"amigo";
         [_Map1 addAnnotation:amigo];
@@ -140,7 +141,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
   
   //centralizar o mapa nesta nova localizacao do usuario
-  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.010,0.010);
+  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.015,0.015);
   
   MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
   NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];
@@ -159,11 +160,12 @@
   
   [self drawRangeRings:newLocation.coordinate];
   
-  //onde o pino sera adicionado
-  ondeEstouAnotacao.coordinate = newLocation.coordinate;
-  _cr = [[CLCircularRegion alloc] initWithCenter:ondeEstouAnotacao.coordinate
-                                          radius:2000
-                                      identifier:@"teste"];
+ 
+    //onde o pino sera adicionado
+//  ondeEstouAnotacao.coordinate = newLocation.coordinate;
+//  _cr = [[CLCircularRegion alloc] initWithCenter:ondeEstouAnotacao.coordinate
+//                                          radius:2000
+//                                      identifier:@"teste"];
   
   
   //busca por informacoes acerca de uma localizacao
