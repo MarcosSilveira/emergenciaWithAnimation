@@ -125,6 +125,10 @@
     
     NSLog(@"Solocitando");
     
+    //Montar a mensagem
+    
+    
+    
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     
     //NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%@&log=%@",self.configs.ip,@"testando o push",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
