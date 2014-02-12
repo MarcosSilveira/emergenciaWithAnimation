@@ -58,7 +58,7 @@
         //JSON
         NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/cadastro.jsp?login=%@&senha=%@&email=%@",self.conf.ip,self.login.text,self.senha.text,self.email.text];
         
-        
+        ur=[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSURL *urs=[[NSURL alloc] initWithString:ur];
         NSData* data = [NSData dataWithContentsOfURL:
