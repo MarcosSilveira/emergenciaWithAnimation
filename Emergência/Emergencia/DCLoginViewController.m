@@ -9,7 +9,7 @@
 #import "DCLoginViewController.h"
 #import "DCConfigs.h"
 #import "DCInicialViewController.h"
-
+#import "DCInicialViewController.h"
 @interface DCLoginViewController ()
 
 
@@ -23,27 +23,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
-    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
-    
+    //
+    //    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    //    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    //
     
     [self configuracoesIniciais];
     
-    if(savedUserName != nil && savedPassword != nil) {
-        [self performSegueWithIdentifier:@"goToInicio" sender:self];
-    }
+    //    if(savedUserName != nil && savedPassword != nil) {
+    //        [self performSegueWithIdentifier:@"goToInicio" sender:self];
+    //    }
     
     // NAO PODE TER BACK BUTTON
     self.navigationItem.hidesBackButton = YES;
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    
+    if(savedUserName != nil && savedPassword != nil) {
+        [self performSegueWithIdentifier:@"goToInicio" sender:self];
+        
+    }
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"goToInicio"]) {
+        DCInicialViewController *inicial = (DCInicialViewController *)segue.destinationViewController;
+        inicial.coordenada = _coordenada;
+    }
+}
 - (void) configuracoesIniciais
 {
     
     //UIColor *color = self.view.tintColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName:[UIColor blackColor] }];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0], NSForegroundColorAttributeName:[UIColor blackColor] }];
     
     self.title = @"Login";
     self.conf=[[DCConfigs alloc] init];

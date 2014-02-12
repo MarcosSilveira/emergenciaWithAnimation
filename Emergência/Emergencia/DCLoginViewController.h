@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCMapasViewController.h"
 
 @interface DCLoginViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *login;
 @property (weak, nonatomic) IBOutlet UITextField *pass;
-
+@property (nonatomic)CLLocationCoordinate2D coordenada;
 @end

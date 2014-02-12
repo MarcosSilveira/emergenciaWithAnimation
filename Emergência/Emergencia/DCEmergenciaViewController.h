@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DCConfigs.h"
+#import "DCMapasViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DCEmergenciaViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSArray *countryNames;
 @property (strong, nonatomic) NSArray *exchangeRates;
 @property (strong,nonatomic) DCConfigs *configs;
+@property (nonatomic) CLLocationCoordinate2D coordenada;
 @end

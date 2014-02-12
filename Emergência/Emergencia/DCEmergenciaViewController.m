@@ -9,6 +9,7 @@
 #import "DCEmergenciaViewController.h"
 #import "DCMapasViewController.h"
 #import "DCEmergencia.h"
+#import "DCMapasViewController.h"
 
 
 @interface DCEmergenciaViewController ()
@@ -20,10 +21,16 @@
 
 @implementation DCEmergenciaViewController
 
+
+CLLocationManager *gerenciadorLocalizacao;
+float lat;
+float longi;
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+    
+  [gerenciadorLocalizacao startUpdatingLocation];
   [self configuracoesIniciais];
   
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -35,6 +42,16 @@
     _configs = [[DCConfigs alloc] init];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    lat = newLocation.coordinate.latitude;
+    longi = newLocation.coordinate.longitude;
+    
+    
+}
+
+
+
 -(void)dismissKeyboard {
   [self.txtRaio resignFirstResponder];
 }
@@ -42,11 +59,16 @@
 - (void) configuracoesIniciais {
   
  // UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: [UIColor blackColor]}];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0], NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.title = @"Emergência";
   
   [self configurarEmergencias];
+    if(self.coordenada.latitude!=0 && self.coordenada.longitude !=0)
+        [self performSegueWithIdentifier:@"goToMapas" sender:self];
+
 }
+
+
 
 - (void) configurarEmergencias {
   
@@ -90,6 +112,12 @@
   
   float raio = [self.txtRaio.text floatValue];
   [viewController setRaio: raio];
+   
+    if ([segue.identifier isEqualToString:@"goToMapas"]) {
+        DCMapasViewController  *mapas = (DCMapasViewController *)segue.destinationViewController;
+        mapas.coordenada = _coordenada;
+    }
+    
 }
 
 - (NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
@@ -135,7 +163,7 @@
     
     
     //COlocar a posiçao atual
-    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,-50.30,-30.20];
+    NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/alertar.jsp?mensagem=%@&idusu=%@&lat=%f&log=%f",self.configs.ip,@"testando o y",savedUserName,lat,longi];
     NSLog(@"%@",[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSURL *urs = [[NSURL alloc] initWithString:[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
     NSData* data = [NSData dataWithContentsOfURL:urs];

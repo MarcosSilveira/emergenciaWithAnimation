@@ -9,6 +9,9 @@
 #import "DCInicialViewController.h"
 #import "DCLoginViewController.h"
 #import "DCReachability.h"
+#import "DCEmergenciaViewController.h"
+#import "DCConfigs.h"
+
 
 @interface DCInicialViewController ()
 
@@ -33,12 +36,17 @@ UIAlertView *nconnection;
   
   
 }
+//-(void)
 
 // verificacao se o server está online
 -(void) testeDeConeccao {
+    NSString *server = [[NSString alloc] init];
+    DCConfigs *config=[[DCConfigs alloc] init];
+    server = [server stringByAppendingFormat:@"http://%@:8080/Emergencia/", config.ip];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
   connectionTest = [DCReachability reachabilityForInternetConnection];
+//    connectionTest = [DCReachability reachabilityWithHostName:server];
   [connectionTest startNotifier];
   
   NetworkStatus remoteHostStatus = [connectionTest currentReachabilityStatus];
@@ -62,13 +70,26 @@ UIAlertView *nconnection;
 - (void) configuracoesIniciais {
   
   //UIColor *color = self.view.tintColor;
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0], NSForegroundColorAttributeName: [UIColor blackColor]}];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0], NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.title = @"Inicial";
   
   //Esconde o bota de voltar
   //TODO: Verificar se o usuário está logado?
   self.navigationItem.hidesBackButton = YES;
+    
+    if(self.coordenada.latitude!=0 && self.coordenada.longitude !=0){
+        [self performSegueWithIdentifier:@"goToEmergencia" sender:self];
+        
+    }
+
   
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"goToEmergencia"]) {
+        DCEmergenciaViewController *emergencia = (DCEmergenciaViewController *)segue.destinationViewController;
+        emergencia.coordenada = _coordenada;
+    }
 }
 
 - (void)didReceiveMemoryWarning
