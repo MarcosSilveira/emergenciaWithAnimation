@@ -94,6 +94,7 @@
     NSString *ur=[NSString stringWithFormat:@"http://%@:8080/Emergencia/login.jsp?login=%@&senha=%@",self.conf.ip,usuario,senha];
     DCAppDelegate *tokn;
     
+    ur=[ur stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *urs=[[NSURL alloc] initWithString:ur];
     NSData* data = [NSData dataWithContentsOfURL:

@@ -46,6 +46,8 @@
     
     NSString *urlAdicionarContato = [NSString stringWithFormat: urlServidor, ipServidor, idUsuario, self.usuario, self.nome, self.telefone];
     
+    urlAdicionarContato=[urlAdicionarContato stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     NSURL *urlRequest = [[NSURL alloc] initWithString: urlAdicionarContato];
     NSData *data = [NSData dataWithContentsOfURL: urlRequest];
     
