@@ -104,20 +104,24 @@
   
   if (self.indexPathContatoExcluir != nil) {
     
-    DCContatos *contato = (DCContatos *) [self.contacts objectAtIndex: self.indexPathContatoExcluir.row];
+    DCContatos *contato;
+    if (!self.pesquisando) {
+      contato = (DCContatos *) [self.contacts objectAtIndex: self.indexPathContatoExcluir.row];
+    } else {
+      
+      contato = (DCContatos *) [self.resultadoBusca objectAtIndex: self.indexPathContatoExcluir.row];
+      [self.resultadoBusca removeObject:contato];
+    }
     [self.contacts removeObject:contato];
     
     [self.tableView beginUpdates];
-    if (self.contacts.count == 0) {
-      
-      [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.indexPathContatoExcluir] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.indexPathContatoExcluir] withRowAnimation:UITableViewRowAnimationFade];
+    if ((!self.pesquisando && self.contacts.count == 0) || (self.pesquisando && self.resultadoBusca.count == 0)) {
       [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:self.indexPathContatoExcluir] withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-      [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.indexPathContatoExcluir] withRowAnimation:UITableViewRowAnimationFade];
     }
     
     [self.tableView endUpdates];
-    
     
     //DELETA O CONTATO NO SERVIDOR
     NSString *urlServidor = @"http://%@:8080/Emergencia/rejeitar.jsp?id=%d";
