@@ -23,7 +23,7 @@
   MKPointAnnotation *pontoaux;
     MFMessageComposeViewController *mensagem;
     CLAuthorizationStatus *teste;
-    
+    MKPointAnnotation *amigo;
 }
 
 - (void)viewDidLoad
@@ -41,10 +41,11 @@
   self.raio = self.raio * 1000;
    
     if(self.coordenada.latitude !=0 && self.coordenada.longitude !=0){
-        MKPointAnnotation *amigo;
+        
         amigo = [[MKPointAnnotation alloc] init];
         amigo.coordinate = self.coordenada;
-        amigo.title = @"amigo";
+        amigo.title = @"Amigo";
+        amigo.subtitle = @"Localização do pedido de ajuda";
         [_Map1 addAnnotation:amigo];
     }
     
@@ -141,7 +142,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
   
   //centralizar o mapa nesta nova localizacao do usuario
-  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.015,0.015);
+  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.115,0.115);
   
   MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
   NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];
@@ -154,7 +155,6 @@
     CLLocationCoordinate2D coordenada = CLLocationCoordinate2DMake(postoaux.lat, postoaux.log);
     pontoaux.coordinate = coordenada;
     pontoaux.subtitle = postoaux.endereco;
-    
     [_Map1 addAnnotation:pontoaux];
   }
   
@@ -205,28 +205,50 @@
   if ([annotation isKindOfClass:[MKUserLocation class]]) {
     return nil;
   }
+    CLLocationCoordinate2D coordAux = [annotation coordinate];
+    if(coordAux.latitude == amigo.coordinate.latitude && coordAux.longitude == amigo.coordinate.longitude){
+        MKPinAnnotationView *amigoView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"amigo"];
+        amigoView.image = [UIImage imageNamed:@"you-make-me-hurt.png"];
+        amigoView.canShowCallout = YES;
+        
+        UIButton *btEsquerdaAmigo = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        btEsquerdaAmigo.backgroundColor = [UIColor redColor];
+        [btEsquerdaAmigo setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
+        [btEsquerdaAmigo addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
+        btEsquerdaAmigo.layer.cornerRadius = 15;
+        
+        amigoView.leftCalloutAccessoryView = btEsquerdaAmigo;
+        
+        amigoView.annotation = annotation;
+        
+        return amigoView;
+    }
+    else
+    {
+        NSString *strPinReuseIdentifier = @"pin";
+        
+        MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
+        
+        if (pin == nil) {
+            
+            pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:strPinReuseIdentifier];
+            
+            UIButton *btEsquerda = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+            btEsquerda.backgroundColor = [UIColor redColor];
+            [btEsquerda setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
+            [btEsquerda addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
+            btEsquerda.layer.cornerRadius = 15;
+            pin.leftCalloutAccessoryView = btEsquerda;
+            pin.canShowCallout = YES;
+            pin.image = [UIImage imageNamed:@"teste.png"];
+        }
+        
+        pin.annotation = annotation;
+        
+        return pin;
+    }
+
   
-  NSString *strPinReuseIdentifier = @"pin";
-  
-  MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:strPinReuseIdentifier];
-  
-  if (pin == nil) {
-    
-    pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:strPinReuseIdentifier];
-    
-    UIButton *btEsquerda = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    btEsquerda.backgroundColor = [UIColor redColor];
-    [btEsquerda setImage:[UIImage imageNamed:@"home_ico_dica_carro.png"] forState:UIControlStateNormal];
-    [btEsquerda addTarget:self action:@selector(clickLeftBt) forControlEvents:UIControlEventTouchUpInside];
-    
-    pin.leftCalloutAccessoryView = btEsquerda;
-    pin.canShowCallout = YES;
-      pin.image = [UIImage imageNamed:@"teste.png"];
-  }
-  
-  pin.annotation = annotation;
-  
-  return pin;
 }
 
 -(void)clickLeftBt {

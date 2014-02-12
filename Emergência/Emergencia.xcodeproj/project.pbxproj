@@ -11,6 +11,7 @@
 		0B535B231896D8FA007CB773 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B535B221896D8FA007CB773 /* ip.txt */; };
 		0BD2E2A81899663F00B78E51 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
+		8D1724AB18ABF4DA00E18006 /* you-make-me-hurt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */; };
 		8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */; };
 		8D2F94E418A2A89A000448EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2F94E318A2A89A000448EC /* MessageUI.framework */; };
 		8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1D6018996E2500FED19E /* DCMapasViewController.m */; };
@@ -59,6 +60,7 @@
 		0B535B221896D8FA007CB773 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 		0BD2E2A91899700800B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
 		0BD2E2AA1899700800B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
+		8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "you-make-me-hurt.png"; sourceTree = "<group>"; };
 		8D18E5B7189FF726003466C6 /* home_ico_dica_carro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_ico_dica_carro.png; sourceTree = "<group>"; };
 		8D2F94E318A2A89A000448EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMapasViewController.h; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				DDC96A0018917DEA00A3CEC7 /* ViewController */,
 				8DAAD2ED18A515690064683F /* Icon.png */,
 				DDC969D41891742B00A3CEC7 /* DCAppDelegate.h */,
+				8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */,
 				DDC969D51891742B00A3CEC7 /* DCAppDelegate.m */,
 				8DAAD2E318A511120064683F /* Icon-settings.png */,
 				DDC969D71891742B00A3CEC7 /* Main.storyboard */,
@@ -334,6 +337,7 @@
 			files = (
 				8D18E5B8189FF726003466C6 /* home_ico_dica_carro.png in Resources */,
 				8DDA2CA118AA98B600EE6295 /* teste.png in Resources */,
+				8D1724AB18ABF4DA00E18006 /* you-make-me-hurt.png in Resources */,
 				DDC969DE1891742B00A3CEC7 /* Images.xcassets in Resources */,
 				8DAAD2EE18A515690064683F /* Icon.png in Resources */,
 				0B535B231896D8FA007CB773 /* ip.txt in Resources */,
@@ -500,7 +504,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Emergencia/Emergencia-Prefix.pch";
@@ -516,7 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Emergencia/Emergencia-Prefix.pch";

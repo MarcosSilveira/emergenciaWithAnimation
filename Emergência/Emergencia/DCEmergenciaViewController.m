@@ -30,6 +30,9 @@ float longi;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+    gerenciadorLocalizacao = [[CLLocationManager alloc] init];
+    gerenciadorLocalizacao.delegate = self;
+    
     
   [gerenciadorLocalizacao startUpdatingLocation];
   [self configuracoesIniciais];
@@ -41,6 +44,8 @@ float longi;
   [self.view addGestureRecognizer:tap];
 
     _configs = [[DCConfigs alloc] init];
+    
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {

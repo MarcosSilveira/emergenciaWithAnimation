@@ -22,6 +22,33 @@
     
     self.window.tintColor = [UIColor colorWithRed:(107/255.0) green:0 blue:(2/255.0) alpha:1];
     
+    
+    
+    if(launchOptions != nil)
+    {
+        NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        
+        if(userInfo != nil)
+        {
+            float latitude = [[userInfo objectForKey:@"lat"] floatValue];
+            float longitude =[[userInfo objectForKey:@"log"]floatValue];
+            MKPointAnnotation *amigo;
+            amigo.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+//            [navController popToRootViewControllerAnimated:NO];
+            
+            
+            DCLoginViewController *dcvc = (DCLoginViewController *)navController.viewControllers[0];
+            dcvc.coordenada = CLLocationCoordinate2DMake(latitude, longitude);
+        }
+    }
+    else
+    {
+        
+    }
+    
+    
     return YES;
 }
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
@@ -32,12 +59,16 @@
     amigo.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     
     
-    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-    [navController popToRootViewControllerAnimated:NO];
     
-    
-    DCLoginViewController *dcvc = (DCLoginViewController *)navController.viewControllers[0];
-    dcvc.coordenada = CLLocationCoordinate2DMake(latitude, longitude);
+    if(application.applicationState == UIApplicationStateInactive)
+    {
+        UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+        [navController popToRootViewControllerAnimated:NO];
+        
+        
+        DCLoginViewController *dcvc = (DCLoginViewController *)navController.viewControllers[0];
+        dcvc.coordenada = CLLocationCoordinate2DMake(latitude, longitude);
+    }
     
     
 }
@@ -67,8 +98,8 @@
     
     
     //chamar WS passando usuario e token
-    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
-    NSString *savedToken = [[NSUserDefaults standardUserDefaults]stringForKey:@"token"];
+//    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
+//    NSString *savedToken = [[NSUserDefaults standardUserDefaults]stringForKey:@"token"];
     
 }
 

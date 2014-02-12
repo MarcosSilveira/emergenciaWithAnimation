@@ -40,8 +40,6 @@ UIAlertView *nconnection;
         
         DCConfigs *config=[[DCConfigs alloc] init];
         
-        NSString* newStr = [[NSString alloc] initWithData:savedToken
-                                                 encoding:NSUTF8StringEncoding];
         
         NSString *ur = [NSString stringWithFormat:@"http://%@:8080/Emergencia/vincular.jsp?login=%@&token=%@",config.ip,savedUserName,savedToken];
         NSLog(@"URL: %@",ur);

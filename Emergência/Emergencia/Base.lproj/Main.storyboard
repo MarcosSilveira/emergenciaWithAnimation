@@ -547,7 +547,7 @@
         <!--Navigation Controller-->
         <scene sceneID="b31-eA-Tw6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yUr-PV-dtB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainVC" automaticallyAdjustsScrollViewInsets="NO" id="yUr-PV-dtB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XjJ-ZA-M3k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -648,7 +648,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hAI-Te-HHN"/>
+        <segue reference="brj-Wr-2D9"/>
         <segue reference="0hI-ST-9lq"/>
         <segue reference="Lzg-Kz-LtN"/>
         <segue reference="GWl-Sy-20g"/>
