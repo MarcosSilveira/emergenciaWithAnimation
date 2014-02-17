@@ -13,9 +13,11 @@
 #import "DCAppDelegate.h"
 @interface DCLoginViewController ()
 
-
-
 @property (nonatomic) DCConfigs *conf;
+@property (nonatomic, readwrite) CGRect bt1Bound;
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+@property (nonatomic, strong) UIGravityBehavior *gravity;
+@property (nonatomic, strong) UICollisionBehavior *collision;
 
 @end
 
@@ -24,10 +26,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    _gravity = [[UIGravityBehavior alloc]initWithItems:@[_login, _pass]];
+    _collision = [[UICollisionBehavior alloc]initWithItems:@[_login, _pass]];
+    
+    [_animator addBehavior:_gravity];
+    [_animator addBehavior:_collision];
+    
     //
     //    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     //    NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
     //
+    
     
     [self configuracoesIniciais];
     
@@ -50,18 +62,22 @@
         
     }
     
-  
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-   [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
-       _cruzImage.alpha = 0;
-   } completion:^(BOOL finished) {
-       _cruzImage.alpha = 0;
-   }];
+    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
+        _cruzImage.alpha = 0;
+    } completion:^(BOOL finished) {
+        _cruzImage.alpha = 0;
+    }];
+    
+
+   [_collision addBoundaryWithIdentifier:@"line" fromPoint:CGPointMake(10, 565) toPoint:CGPointMake(300, 565)];
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -73,7 +89,7 @@
 - (void) configuracoesIniciais
 {
     
-    //UIColor *color = self.view.tintColor;
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0], NSForegroundColorAttributeName:[UIColor blackColor] }];
     
     self.title = @"Login";
@@ -92,6 +108,7 @@
 }
 
 - (IBAction)logar:(UIButton *)sender {
+    
     
     if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
         [self performSegueWithIdentifier:@"goToInicio" sender:sender];

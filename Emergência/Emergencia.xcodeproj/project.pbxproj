@@ -68,6 +68,8 @@
 		8DAAD2E318A511120064683F /* Icon-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-settings.png"; sourceTree = "<group>"; };
 		8DAAD2ED18A515690064683F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		8DDA2CA018AA98B500EE6295 /* teste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teste.png; sourceTree = "<group>"; };
+		B141E42418B28AB800792AEF /* DCPositionToBoundsMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPositionToBoundsMapping.h; sourceTree = "<group>"; };
+		B141E42518B28AB800792AEF /* DCPositionToBoundsMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPositionToBoundsMapping.m; sourceTree = "<group>"; };
 		B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatosViewController.h; sourceTree = "<group>"; };
 		B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCContatosViewController.m; sourceTree = "<group>"; };
 		B185CA1E18A15BC800EE2CCE /* DCContatos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCContatos.h; sourceTree = "<group>"; };
@@ -137,6 +139,8 @@
 		DDA9693D1896B9E600CBAB0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD9E05ED18A5329F00F2A4A6 /* DCReachability.h */,
+				DD9E05EE18A5329F00F2A4A6 /* DCReachability.m */,
 				0BD2E2A91899700800B78E51 /* DCPosto.h */,
 				0BD2E2AA1899700800B78E51 /* DCPosto.m */,
 				DDA9693E1896BA1E00CBAB0D /* DCEmergencia.h */,
@@ -145,6 +149,8 @@
 				0B535AE61896D14A007CB773 /* DCConfigs.m */,
 				B185CA1E18A15BC800EE2CCE /* DCContatos.h */,
 				B185CA1F18A15BC800EE2CCE /* DCContatos.m */,
+				B141E42418B28AB800792AEF /* DCPositionToBoundsMapping.h */,
+				B141E42518B28AB800792AEF /* DCPositionToBoundsMapping.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -249,8 +255,6 @@
 				DDC969FB18917C7D00A3CEC7 /* DCCadastroViewController.m */,
 				DDC969DA1891742B00A3CEC7 /* DCLoginViewController.h */,
 				DDC969DB1891742B00A3CEC7 /* DCLoginViewController.m */,
-				DD9E05ED18A5329F00F2A4A6 /* DCReachability.h */,
-				DD9E05EE18A5329F00F2A4A6 /* DCReachability.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B141E42618B28AB800792AEF /* DCPositionToBoundsMapping.m in Sources */,
 				0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */,
 				DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */,
 				DDC969FC18917C7D00A3CEC7 /* DCCadastroViewController.m in Sources */,

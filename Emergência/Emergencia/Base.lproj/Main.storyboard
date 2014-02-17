@@ -93,8 +93,11 @@
                     <navigationItem key="navigationItem" id="S1e-lw-aZi"/>
                     <connections>
                         <outlet property="cruzImage" destination="5em-xe-kcc" id="u3O-wT-f9T"/>
+                        <outlet property="emergBT" destination="J56-Y3-dUU" id="7TH-ge-2Xu"/>
+                        <outlet property="logBT" destination="7DJ-cq-ExH" id="H0Q-U2-prg"/>
                         <outlet property="login" destination="P66-Ic-RQY" id="OOe-w8-YhL"/>
                         <outlet property="pass" destination="NgE-Yo-iGe" id="DTR-Kr-EBb"/>
+                        <outlet property="signBT" destination="1D4-Xg-AtG" id="D1k-sV-7QS"/>
                         <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="0hI-ST-9lq"/>
                     </connections>
                 </viewController>
