@@ -49,7 +49,21 @@
         [self performSegueWithIdentifier:@"goToInicio" sender:self];
         
     }
+    
+  
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+   [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
+       _cruzImage.alpha = 0;
+   } completion:^(BOOL finished) {
+       _cruzImage.alpha = 1;
+   }];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"goToInicio"]) {
         DCInicialViewController *inicial = (DCInicialViewController *)segue.destinationViewController;

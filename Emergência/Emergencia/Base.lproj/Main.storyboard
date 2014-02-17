@@ -92,6 +92,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="S1e-lw-aZi"/>
                     <connections>
+                        <outlet property="cruzImage" destination="5em-xe-kcc" id="u3O-wT-f9T"/>
                         <outlet property="login" destination="P66-Ic-RQY" id="OOe-w8-YhL"/>
                         <outlet property="pass" destination="NgE-Yo-iGe" id="DTR-Kr-EBb"/>
                         <segue destination="Mxl-z6-SRM" kind="push" identifier="goToInicio" id="0hI-ST-9lq"/>
@@ -650,7 +651,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="brj-Wr-2D9"/>
         <segue reference="0hI-ST-9lq"/>
-        <segue reference="Lzg-Kz-LtN"/>
+        <segue reference="Esd-5I-jcg"/>
         <segue reference="GWl-Sy-20g"/>
     </inferredMetricsTieBreakers>
 </document>

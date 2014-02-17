@@ -10,7 +10,7 @@
 #import "DCMapasViewController.h"
 
 @interface DCLoginViewController : UIViewController<UITextFieldDelegate>
-
+@property (weak, nonatomic) IBOutlet UIImageView *cruzImage;
 @property (weak, nonatomic) IBOutlet UITextField *login;
 @property (weak, nonatomic) IBOutlet UITextField *pass;
 @property (nonatomic)CLLocationCoordinate2D coordenada;
