@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B535AE61896D14A007CB773 /* DCConfigs.m */; };
 		0B535B231896D8FA007CB773 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B535B221896D8FA007CB773 /* ip.txt */; };
+		0B59774C18B289A800E7E0D9 /* DCBoundsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B59774B18B289A800E7E0D9 /* DCBoundsDetail.m */; };
 		0BD2E2A81899663F00B78E51 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
 		8D1724AB18ABF4DA00E18006 /* you-make-me-hurt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */; };
@@ -58,6 +59,8 @@
 		0B535AE51896D14A007CB773 /* DCConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCConfigs.h; sourceTree = "<group>"; };
 		0B535AE61896D14A007CB773 /* DCConfigs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCConfigs.m; sourceTree = "<group>"; };
 		0B535B221896D8FA007CB773 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
+		0B59774A18B289A800E7E0D9 /* DCBoundsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBoundsDetail.h; sourceTree = "<group>"; };
+		0B59774B18B289A800E7E0D9 /* DCBoundsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCBoundsDetail.m; sourceTree = "<group>"; };
 		0BD2E2A91899700800B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
 		0BD2E2AA1899700800B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
 		8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "you-make-me-hurt.png"; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				0B535AE61896D14A007CB773 /* DCConfigs.m */,
 				B185CA1E18A15BC800EE2CCE /* DCContatos.h */,
 				B185CA1F18A15BC800EE2CCE /* DCContatos.m */,
+				0B59774A18B289A800E7E0D9 /* DCBoundsDetail.h */,
+				0B59774B18B289A800E7E0D9 /* DCBoundsDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,23 +238,23 @@
 		DDC96A0018917DEA00A3CEC7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B185CA2118A29CAC00EE2CCE /* DCNovoContatoViewController.h */,
-				B185CA2218A29CAC00EE2CCE /* DCNovoContatoViewController.m */,
 				DDA9693A1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.h */,
-				DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */,
-				DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */,
-				DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */,
-				B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */,
-				B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */,
-				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
-				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
-				DDC969FD18917CB600A3CEC7 /* DCInicialViewController.h */,
-				DDC969FE18917CB600A3CEC7 /* DCInicialViewController.m */,
 				DDC969FA18917C7D00A3CEC7 /* DCCadastroViewController.h */,
-				DDC969FB18917C7D00A3CEC7 /* DCCadastroViewController.m */,
+				B185CA1B18A157E000EE2CCE /* DCContatosViewController.h */,
+				DDA969371892C43F00CBAB0D /* DCEmergenciaViewController.h */,
+				DDC969FD18917CB600A3CEC7 /* DCInicialViewController.h */,
 				DDC969DA1891742B00A3CEC7 /* DCLoginViewController.h */,
-				DDC969DB1891742B00A3CEC7 /* DCLoginViewController.m */,
+				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
+				B185CA2118A29CAC00EE2CCE /* DCNovoContatoViewController.h */,
 				DD9E05ED18A5329F00F2A4A6 /* DCReachability.h */,
+				DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */,
+				DDC969FB18917C7D00A3CEC7 /* DCCadastroViewController.m */,
+				B185CA1C18A157E000EE2CCE /* DCContatosViewController.m */,
+				DDA969381892C43F00CBAB0D /* DCEmergenciaViewController.m */,
+				DDC969FE18917CB600A3CEC7 /* DCInicialViewController.m */,
+				DDC969DB1891742B00A3CEC7 /* DCLoginViewController.m */,
+				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
+				B185CA2218A29CAC00EE2CCE /* DCNovoContatoViewController.m */,
 				DD9E05EE18A5329F00F2A4A6 /* DCReachability.m */,
 			);
 			name = ViewController;
@@ -363,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */,
+				0B59774C18B289A800E7E0D9 /* DCBoundsDetail.m in Sources */,
 				DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */,
 				DDC969FC18917C7D00A3CEC7 /* DCCadastroViewController.m in Sources */,
 				0BD2E2A81899663F00B78E51 /* (null) in Sources */,
