@@ -60,7 +60,7 @@
    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
        _cruzImage.alpha = 0;
    } completion:^(BOOL finished) {
-       _cruzImage.alpha = 1;
+       _cruzImage.alpha = 0;
    }];
 }
 
