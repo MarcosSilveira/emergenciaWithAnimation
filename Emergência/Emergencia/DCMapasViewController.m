@@ -142,7 +142,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
   
   //centralizar o mapa nesta nova localizacao do usuario
-  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.115,0.115);
+  MKCoordinateSpan zoom = MKCoordinateSpanMake(0.015,0.015);
   
   MKCoordinateRegion regiao = MKCoordinateRegionMake(newLocation.coordinate, zoom);
   NSMutableArray *postos = [self buscar:newLocation.coordinate.latitude withlongitude:newLocation.coordinate.longitude withraioMeters:self.raio withPriority:@1];

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DCMapasViewController.h"
 @interface DCInicialViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *logOutBT;
+@property (weak, nonatomic) IBOutlet UIButton *contacBT;
 
 @property NSMutableArray *listaContatos;
 @property (nonatomic)CLLocationCoordinate2D coordenada;
