@@ -11,6 +11,7 @@
 #import "DCInicialViewController.h"
 #import "DCInicialViewController.h"
 #import "DCAppDelegate.h"
+#import "TLAlertView.h"
 @interface DCLoginViewController ()
 
 @property (nonatomic) DCConfigs *conf;
@@ -18,6 +19,8 @@
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIGravityBehavior *gravity;
 @property (nonatomic, strong) UICollisionBehavior *collision;
+
+
 
 @end
 
@@ -139,7 +142,8 @@
         [self runAnimations:0];
     } else {
         //self.oks.text=@"Erro no login";
-        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" buttonTitle:@"OK"];
+        [alertView show];
     }
     
 }
@@ -196,7 +200,11 @@
         
     }else{
         //self.oks.text=@"Erro no login";
-        [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        //[[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+        
+        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" buttonTitle:@"OK"];
+        [alertView show];
+
         
         return NO;
     }
