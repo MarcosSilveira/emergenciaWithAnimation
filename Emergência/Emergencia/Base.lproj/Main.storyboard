@@ -372,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Pesquisar contatos" showsCancelButton="YES" id="mcv-Qy-JOg">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -381,7 +381,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="kba-uw-ReF">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kba-uw-ReF" id="zfQ-EW-e7D">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -409,7 +409,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell2" id="KXU-5O-CNl">
-                                <rect key="frame" x="0.0" y="174" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KXU-5O-CNl" id="e7f-Yv-79c">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -434,7 +434,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell3" id="OK7-07-Lyd">
-                                <rect key="frame" x="0.0" y="218" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="154" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OK7-07-Lyd" id="ZL8-Dr-Nb2">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -507,7 +507,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="salvarContat" destination="7pt-rW-H8K" eventType="touchUpInside" id="mT2-ae-2cA"/>
+                                    <action selector="saveContat2:" destination="7pt-rW-H8K" eventType="touchUpInside" id="a35-kH-oIa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kGr-Nz-2EE">
@@ -545,6 +545,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="PYk-TV-sSf"/>
                     <connections>
+                        <outlet property="LBFone" destination="7rA-yp-Kzc" id="Tjk-OU-vex"/>
+                        <outlet property="LBNome" destination="kGr-Nz-2EE" id="p2l-mb-vuh"/>
+                        <outlet property="LBUser" destination="9ch-Xx-Zsr" id="zdr-30-8Yi"/>
+                        <outlet property="TFFone" destination="gLI-wh-q8s" id="UOI-ti-BKH"/>
+                        <outlet property="TFNome" destination="HO4-ij-DV6" id="E4p-3b-qGl"/>
+                        <outlet property="TFUser" destination="c9b-BQ-I8t" id="xsd-S0-ooC"/>
                         <outlet property="txtNome" destination="HO4-ij-DV6" id="FFp-OK-c6v"/>
                         <outlet property="txtTelefone" destination="gLI-wh-q8s" id="4ok-yP-ujt"/>
                         <outlet property="txtUser" destination="c9b-BQ-I8t" id="pTQ-4R-E1y"/>
@@ -658,9 +664,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Lzg-Kz-LtN"/>
-        <segue reference="0hI-ST-9lq"/>
+        <segue reference="Esd-5I-jcg"/>
         <segue reference="hAI-Te-HHN"/>
+        <segue reference="0hI-ST-9lq"/>
         <segue reference="GWl-Sy-20g"/>
     </inferredMetricsTieBreakers>
 </document>

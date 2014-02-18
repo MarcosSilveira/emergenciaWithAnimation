@@ -248,6 +248,7 @@
 				DDC969FD18917CB600A3CEC7 /* DCInicialViewController.h */,
 				8D3C1D5F18996E2500FED19E /* DCMapasViewController.h */,
 				B185CA2118A29CAC00EE2CCE /* DCNovoContatoViewController.h */,
+				B185CA2218A29CAC00EE2CCE /* DCNovoContatoViewController.m */,
 				DD9E05ED18A5329F00F2A4A6 /* DCReachability.h */,
 				DDA9693B1892C8A600CBAB0D /* DCAtendimentoEmergenciaViewController.m */,
 				DDC969FB18917C7D00A3CEC7 /* DCCadastroViewController.m */,
@@ -256,7 +257,6 @@
 				DDC969DA1891742B00A3CEC7 /* DCLoginViewController.h */,
 				DDC969DB1891742B00A3CEC7 /* DCLoginViewController.m */,
 				8D3C1D6018996E2500FED19E /* DCMapasViewController.m */,
-				B185CA2218A29CAC00EE2CCE /* DCNovoContatoViewController.m */,
 				DD9E05EE18A5329F00F2A4A6 /* DCReachability.m */,
 			);
 			name = ViewController;

@@ -13,7 +13,22 @@
 
 @interface DCNovoContatoViewController ()
 
+@property(nonatomic,strong) UIDynamicAnimator *animator;
+@property (nonatomic,strong) UIDynamicAnimator *animator2;
+@property (nonatomic,strong) UIDynamicAnimator *animator3;
+@property(nonatomic,strong) UIGravityBehavior *gravity;
+@property (nonatomic, strong) UIPushBehavior *pushBehavior;
+@property(nonatomic,strong) UIGravityBehavior *gravity2;
+@property (nonatomic, strong) UIPushBehavior *pushBehavior2;
+@property(nonatomic,strong) UIGravityBehavior *gravity3;
+@property (nonatomic, strong) UIPushBehavior *pushBehavior3;
 @property (nonatomic) DCConfigs *conf;
+@property (weak, nonatomic) IBOutlet UITextField *TFNome;
+@property (weak, nonatomic) IBOutlet UILabel *LBNome;
+@property (weak, nonatomic) IBOutlet UITextField *TFFone;
+@property (weak, nonatomic) IBOutlet UILabel *LBFone;
+@property (weak, nonatomic) IBOutlet UITextField *TFUser;
+@property (weak, nonatomic) IBOutlet UILabel *LBUser;
 
 
 @end
@@ -24,7 +39,6 @@
 {
     [super viewDidLoad];
     self.conf = [[DCConfigs alloc] init];
-    
     if (self.contato != nil) {
         
         self.txtNome.text = self.contato.nome;
@@ -32,7 +46,34 @@
         self.txtUser.text = self.contato.usuario;
         
         self.txtUser.enabled = NO;
+        
     }
+    
+}
+
+-(void)runAnimation{
+    _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    _animator2 = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    _animator3 = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    _gravity = [[UIGravityBehavior alloc] initWithItems:@[_TFNome, _LBNome]];
+    _gravity.magnitude = 0.7;
+    _gravity2 = [[UIGravityBehavior alloc] initWithItems:@[_TFUser, _LBUser]];
+    _gravity2.magnitude = 1.3;
+    _gravity3 = [[UIGravityBehavior alloc] initWithItems:@[_TFFone, _LBFone]];
+    
+    _pushBehavior2 = [[UIPushBehavior alloc] initWithItems:@[_TFUser, _LBUser]mode:UIPushBehaviorModeContinuous];
+    _pushBehavior = [[UIPushBehavior alloc] initWithItems:@[_TFNome, _LBNome]mode:
+                     UIPushBehaviorModeContinuous];
+    _pushBehavior3 = [[UIPushBehavior alloc] initWithItems:@[_TFFone, _LBFone] mode:UIPushBehaviorModeContinuous];
+  
+    [_animator3 addBehavior:_gravity3];
+    [_animator3 addBehavior:_pushBehavior3];
+    [_animator2 addBehavior:_gravity2];
+    [_animator2 addBehavior:_pushBehavior2];
+    [_animator addBehavior:_pushBehavior];
+    [_animator addBehavior:_gravity];
+
     
 }
 
@@ -64,12 +105,26 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)saveContat2:(id)sender {
+    [self runAnimation];
+    NSTimer * timer = [[NSTimer alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(salvarContat)
+                                           userInfo:nil
+                                            repeats:NO];
+    
+}
+
+
+
 - (IBAction)salvarContat {
     
     DCContatos *contato;
     
     //ADICIONA UM CONTATO NOVO
     if (self.contato == nil) {
+        
         contato = [[DCContatos alloc]init];
         
         contato.nome = self.txtNome.text;
