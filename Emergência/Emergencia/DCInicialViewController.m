@@ -11,11 +11,17 @@
 #import "DCReachability.h"
 #import "DCEmergenciaViewController.h"
 #import "DCConfigs.h"
+#import "DCBoundsDetail.h"
 
 
 @interface DCInicialViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *userLogado;
+@property (weak, nonatomic) IBOutlet UIButton *estou;
+
+
+@property (nonatomic, readwrite) CGRect button1Bounds;
+@property (nonatomic, strong) UIDynamicAnimator *animator;
 
 
 @end
@@ -64,8 +70,80 @@ UIAlertView *nconnection;
         }
     }
     
+    self.button1Bounds = self.estou.bounds;
     
+    // Force the button image to scale with its bounds.
+    self.estou.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    self.estou.contentVerticalAlignment = UIControlContentHorizontalAlignmentFill;
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    self.estou.bounds = self.button1Bounds;
+    
+    // UIDynamicAnimator instances are relatively cheap to create.
+    UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    // APLPositionToBoundsMapping maps the center of an id<ResizableDynamicItem>
+    // (UIDynamicItem with mutable bounds) to its bounds.  As dynamics modifies
+    // the center.x, the changes are forwarded to the bounds.size.width.
+    // Similarly, as dynamics modifies the center.y, the changes are forwarded
+    // to bounds.size.height.
+    
+    DCBoundsDetail *buttonBoundsDynamicItem = [[DCBoundsDetail alloc] initWithTarget:self.estou];
+    
+    // Create an attachment between the buttonBoundsDynamicItem and the initial
+    // value of the button's bounds.
+    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:buttonBoundsDynamicItem attachedToAnchor:buttonBoundsDynamicItem.center];
+    
+    [attachmentBehavior setFrequency:10.0];
+    //[attachmentBehavior setDamping:0.2];
+    [animator addBehavior:attachmentBehavior];
+    
+    UIPushBehavior *pushBehavior = [[UIPushBehavior alloc] initWithItems:@[buttonBoundsDynamicItem] mode:UIPushBehaviorModeInstantaneous];
+    pushBehavior.angle = M_PI_4;
+    pushBehavior.magnitude = 50.0;
+    [animator addBehavior:pushBehavior];
+    
+    [pushBehavior setActive:TRUE];
+    
+    self.animator = animator;
+}
+
+
+- (IBAction)animar:(id)sender {
+    self.estou.bounds = self.button1Bounds;
+    
+    // UIDynamicAnimator instances are relatively cheap to create.
+    UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    // APLPositionToBoundsMapping maps the center of an id<ResizableDynamicItem>
+    // (UIDynamicItem with mutable bounds) to its bounds.  As dynamics modifies
+    // the center.x, the changes are forwarded to the bounds.size.width.
+    // Similarly, as dynamics modifies the center.y, the changes are forwarded
+    // to bounds.size.height.
+    
+    DCBoundsDetail *buttonBoundsDynamicItem = [[DCBoundsDetail alloc] initWithTarget:sender];
+    
+    // Create an attachment between the buttonBoundsDynamicItem and the initial
+    // value of the button's bounds.
+    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:buttonBoundsDynamicItem attachedToAnchor:buttonBoundsDynamicItem.center];
+    
+    [attachmentBehavior setFrequency:2.0];
+    [attachmentBehavior setDamping:0.3];
+    [animator addBehavior:attachmentBehavior];
+    
+    UIPushBehavior *pushBehavior = [[UIPushBehavior alloc] initWithItems:@[buttonBoundsDynamicItem] mode:UIPushBehaviorModeInstantaneous];
+    pushBehavior.angle = M_PI_4;
+    pushBehavior.magnitude = 2.0;
+    [animator addBehavior:pushBehavior];
+    
+    [pushBehavior setActive:TRUE];
+    
+    self.animator = animator;
+
+}
+
+
 
 -(void) testeDeConeccao {
     NSString *server = [[NSString alloc] init];
