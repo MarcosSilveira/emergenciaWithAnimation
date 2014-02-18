@@ -130,6 +130,9 @@ UIAlertView *nconnection;
     }
     
     
+    _logOutBT.transform = CGAffineTransformMakeRotation(180);
+    _contacBT.transform = CGAffineTransformMakeRotation(180);
+    
 }
 
 - (IBAction)animar:(id)sender {

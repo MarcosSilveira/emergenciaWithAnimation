@@ -178,7 +178,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Jgf-Sn-2ON"/>
                     <connections>
+                        <outlet property="contacBT" destination="pgE-W9-WcY" id="jNf-z0-7uL"/>
                         <outlet property="estou" destination="bnJ-Zc-WCi" id="vCb-uh-VBd"/>
+                        <outlet property="logOutBT" destination="fgK-5Z-B3E" id="cQm-XO-GTe"/>
                         <outlet property="userLogado" destination="WCw-HL-CsA" id="zuR-Y7-9KJ"/>
                     </connections>
                 </viewController>
