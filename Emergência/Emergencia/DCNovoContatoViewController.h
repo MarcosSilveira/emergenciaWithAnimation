@@ -20,6 +20,6 @@
 @property (strong, nonatomic) DCContatos *contato;
 
 - (IBAction)salvarContat;
--(void)runAnimation;
+-(void)runAnimation:(NSInteger) ID;
 
 @end

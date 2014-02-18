@@ -52,7 +52,10 @@
     
 }
 
--(void)runAnimation{
+-(void)runAnimation:(NSInteger) ID{
+    if(ID==0){
+        
+        
     _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
     _animator2 = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     _animator3 = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -74,6 +77,14 @@
     [_animator2 addBehavior:_pushBehavior2];
     [_animator addBehavior:_pushBehavior];
     [_animator addBehavior:_gravity];
+    }
+    else{
+        _TFNome.center = CGPointMake(200, 300);
+        _TFNome.center = CGPointMake(200, 350);
+        
+        
+        
+    }
 
     
 }
@@ -107,7 +118,7 @@
 }
 
 - (IBAction)saveContat2:(id)sender {
-    [self runAnimation];
+    [self runAnimation:0];
     NSTimer * timer = [[NSTimer alloc] init];
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                              target:self
