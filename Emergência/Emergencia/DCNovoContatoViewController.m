@@ -23,6 +23,12 @@
 @property (nonatomic, strong) UIPushBehavior *pushBehavior2;
 @property(nonatomic,strong) UIGravityBehavior *gravity3;
 @property (nonatomic, strong) UIPushBehavior *pushBehavior3;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior2;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior3;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior4;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior5;
+@property (nonatomic,strong) UISnapBehavior *snapBehavior6;
 @property (nonatomic) DCConfigs *conf;
 @property (weak, nonatomic) IBOutlet UITextField *TFNome;
 @property (weak, nonatomic) IBOutlet UILabel *LBNome;
@@ -30,6 +36,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *LBFone;
 @property (weak, nonatomic) IBOutlet UITextField *TFUser;
 @property (weak, nonatomic) IBOutlet UILabel *LBUser;
+@property  CGPoint TFNomeP;
+@property  CGPoint TFFoneP;
+@property  CGPoint TFUserP;
+@property  CGPoint LBNomeP;
+@property  CGPoint LBFoneP;
+@property  CGPoint LBUserP;
+
 
 
 @end
@@ -40,6 +53,14 @@
 {
     [super viewDidLoad];
     self.conf = [[DCConfigs alloc] init];
+   
+    _TFNomeP = _TFNome.center;
+    _TFFoneP = _TFFone.center;
+    _TFUserP = _TFUser.center;
+    _LBNomeP = _LBNome.center;
+    _LBFoneP = _LBFone.center;
+    _LBUserP = _LBUser.center;
+    
     if (self.contato != nil) {
         
         self.txtNome.text = self.contato.nome;
@@ -47,7 +68,7 @@
         self.txtUser.text = self.contato.usuario;
         
         self.txtUser.enabled = NO;
-        
+
     }
     
 }
@@ -80,7 +101,31 @@
     }
     else{
         _TFNome.center = CGPointMake(200, 300);
-        _TFNome.center = CGPointMake(200, 350);
+        _TFUser.center = CGPointMake(200, 350);
+        _TFFone.center = CGPointMake(200,400);
+        _LBNome.center = CGPointMake(200, 450);
+        _LBUser.center = CGPointMake(200, 500);
+        _LBFone.center = CGPointMake(200, 550);
+        
+        [_animator removeAllBehaviors];
+        [_animator2 removeAllBehaviors];
+        [_animator3 removeAllBehaviors];
+        
+        _snapBehavior = [[UISnapBehavior alloc] initWithItem:_TFNome snapToPoint:_TFNomeP];
+        _snapBehavior2 = [[UISnapBehavior alloc] initWithItem:_TFFone snapToPoint:_TFFoneP];
+        _snapBehavior3 = [[UISnapBehavior alloc] initWithItem:_TFUser snapToPoint:_TFUserP];
+        _snapBehavior4 = [[UISnapBehavior alloc] initWithItem:_LBUser snapToPoint:_LBUserP];
+        _snapBehavior5 = [[UISnapBehavior alloc] initWithItem:_LBNome snapToPoint:_LBNomeP];
+        _snapBehavior6 = [[UISnapBehavior alloc] initWithItem:_LBFone snapToPoint:_LBFoneP];
+        
+        [ _animator addBehavior:_snapBehavior];
+        [ _animator addBehavior:_snapBehavior5];
+        [ _animator2 addBehavior:_snapBehavior2];
+        [ _animator2 addBehavior:_snapBehavior6];
+        [ _animator3 addBehavior:_snapBehavior3];
+        [ _animator3 addBehavior:_snapBehavior4];
+        
+        NSLog(@"Teste");
         
         
         
@@ -108,7 +153,7 @@
     if (alertView.tag == 1500) {
         
         if (buttonIndex == 0) {
-            [self.runAnimation:1];
+            [self runAnimation:1];
         }
     }
 }
