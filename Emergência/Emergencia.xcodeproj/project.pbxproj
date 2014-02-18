@@ -10,6 +10,7 @@
 		0B535AE71896D14A007CB773 /* DCConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B535AE61896D14A007CB773 /* DCConfigs.m */; };
 		0B535B231896D8FA007CB773 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B535B221896D8FA007CB773 /* ip.txt */; };
 		0B59774C18B289A800E7E0D9 /* DCBoundsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B59774B18B289A800E7E0D9 /* DCBoundsDetail.m */; };
+		0B893FF418B3D2AA00294CDC /* TLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B893FF318B3D2AA00294CDC /* TLAlertView.m */; };
 		0BD2E2A81899663F00B78E51 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD2E2AA1899700800B78E51 /* DCPosto.m */; };
 		8D1724AB18ABF4DA00E18006 /* you-make-me-hurt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */; };
@@ -61,6 +62,8 @@
 		0B535B221896D8FA007CB773 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 		0B59774A18B289A800E7E0D9 /* DCBoundsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCBoundsDetail.h; sourceTree = "<group>"; };
 		0B59774B18B289A800E7E0D9 /* DCBoundsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCBoundsDetail.m; sourceTree = "<group>"; };
+		0B893FF218B3D2AA00294CDC /* TLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAlertView.h; sourceTree = "<group>"; };
+		0B893FF318B3D2AA00294CDC /* TLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLAlertView.m; sourceTree = "<group>"; };
 		0BD2E2A91899700800B78E51 /* DCPosto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPosto.h; sourceTree = "<group>"; };
 		0BD2E2AA1899700800B78E51 /* DCPosto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPosto.m; sourceTree = "<group>"; };
 		8D1724AA18ABF4DA00E18006 /* you-make-me-hurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "you-make-me-hurt.png"; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		DDA9693D1896B9E600CBAB0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B893FF218B3D2AA00294CDC /* TLAlertView.h */,
+				0B893FF318B3D2AA00294CDC /* TLAlertView.m */,
 				DD9E05ED18A5329F00F2A4A6 /* DCReachability.h */,
 				DD9E05EE18A5329F00F2A4A6 /* DCReachability.m */,
 				0BD2E2A91899700800B78E51 /* DCPosto.h */,
@@ -372,6 +377,7 @@
 				0BD2E2AB1899700800B78E51 /* DCPosto.m in Sources */,
 				0B59774C18B289A800E7E0D9 /* DCBoundsDetail.m in Sources */,
 				DDA969401896BA1E00CBAB0D /* DCEmergencia.m in Sources */,
+				0B893FF418B3D2AA00294CDC /* TLAlertView.m in Sources */,
 				DDC969FC18917C7D00A3CEC7 /* DCCadastroViewController.m in Sources */,
 				0BD2E2A81899663F00B78E51 /* (null) in Sources */,
 				8D3C1D6118996E2500FED19E /* DCMapasViewController.m in Sources */,

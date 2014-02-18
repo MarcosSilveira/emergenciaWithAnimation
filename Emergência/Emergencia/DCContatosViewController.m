@@ -49,11 +49,15 @@
     
     UITableView *viewAnim=[self view];
     
-    viewAnim.alpha=0;
     
-    [UIView animateWithDuration:2.0 animations:^{
-               viewAnim.alpha = 1;
-    }];
+      [UIView animateWithDuration:0.7 animations:^{
+          viewAnim.alpha = 0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1.0 animations:^{
+                viewAnim.alpha = 1.0f;
+            }];
+    
+        }];
 }
 
 //AO CLICAR NO BOTÃO DE EXCLUIR CONTATO
