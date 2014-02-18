@@ -104,11 +104,12 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+    NSLog(@"Aqui Antes");
     if (alertView.tag == 1500) {
         
         if (buttonIndex == 0) {
-            [self.runAnimation:1];
+            [self runAnimation:1];
+            NSLog(@"Aqui");
         }
     }
 }
@@ -163,11 +164,15 @@
             
             alertView.tag=1500;
             
+            
+            
             [self.previousViewController.contacts addObject: contato];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             
-            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Falha" message:@"Não foi possível adicionar o contato" buttonTitle:@"OK"];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Falha" message:@"Não foi possível adicionar o contato" buttonTitle:@"OK" handler:^(TLAlertView *alertView) {
+                [self performSelectorOnMainThread:@selector(callAnimation) withObject:nil waitUntilDone:NO];
+            }];
             
             [alertView show];
             
@@ -181,7 +186,9 @@
         
         if ([contato editarComIPServidor: self.conf.ip]) {
             
-            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato editado com sucesso" buttonTitle:@"OK"];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato editado com sucesso" buttonTitle:@"OK"handler:^(TLAlertView *alertView) {
+                [self performSelectorOnMainThread:@selector(callAnimation) withObject:nil waitUntilDone:NO];
+            }];
             [alertView show];
             
             alertView.tag=1500;
@@ -189,17 +196,28 @@
             
         } else {
             
-            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível editar o contato" buttonTitle:@"OK"];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível editar o contato" buttonTitle:@"OK"handler:^(TLAlertView *alertView) {
+                [self performSelectorOnMainThread:@selector(callAnimation) withObject:nil waitUntilDone:NO];
+            }];
             [alertView show];
             alertView.tag=1500;
         }
     }
     }else{
-        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Digite nos campos" buttonTitle:@"OK"];
+        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Digite nos campos" buttonTitle:@"OK" handler:^(TLAlertView *alertView) {
+            [self performSelectorOnMainThread:@selector(callAnimation) withObject:nil waitUntilDone:NO];
+        }];
         [alertView show];
         
         alertView.tag=1500;
     }
 }
+
+
+-(void)callAnimation
+{
+    [self runAnimation:1];
+}
+
 
 @end
