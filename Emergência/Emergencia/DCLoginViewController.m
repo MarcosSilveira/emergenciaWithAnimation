@@ -28,12 +28,7 @@
     [super viewDidLoad];
     
     
-    _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
-    _gravity = [[UIGravityBehavior alloc]initWithItems:@[_login, _pass]];
-    _collision = [[UICollisionBehavior alloc]initWithItems:@[_login, _pass]];
     
-    [_animator addBehavior:_gravity];
-    [_animator addBehavior:_collision];
     
     //
     //    NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
@@ -64,10 +59,13 @@
     
     
 }
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+-(void)runAnimations:(NSInteger) ID{
+    _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    _gravity = [[UIGravityBehavior alloc]initWithItems:@[_login, _pass]];
+    _collision = [[UICollisionBehavior alloc]initWithItems:@[_login, _pass]];
+    
+    [_animator addBehavior:_gravity];
+    [_animator addBehavior:_collision];
     
     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
         _cruzImage.frame = CGRectMake(10, 10, 10, 10);
@@ -86,6 +84,24 @@
     
     
     [_collision addBoundaryWithIdentifier:@"line" fromPoint:CGPointMake(10, 565) toPoint:CGPointMake(300, 565)];
+    
+    //chama a segue depois de 3 segundos da inicialização do método
+    NSTimer * timer = [[NSTimer alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+                                             target:self
+                                           selector:@selector(vaipratela)
+                                           userInfo:nil
+                                            repeats:NO];
+}
+-(void)vaipratela{
+    [self performSegueWithIdentifier:@"goToInicio" sender:nil];
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
     
 }
 
@@ -120,7 +136,7 @@
     
     
     if ([self loginUsuarioComUsuario: self.login.text comSenha:self.pass.text]) {
-        [self performSegueWithIdentifier:@"goToInicio" sender:sender];
+        [self runAnimations:0];
     } else {
         //self.oks.text=@"Erro no login";
         [[[UIAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
