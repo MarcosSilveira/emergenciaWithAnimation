@@ -103,6 +103,16 @@
   return YES;
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (alertView.tag == 1500) {
+        
+        if (buttonIndex == 0) {
+            [self.runAnimation:1];
+        }
+    }
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [_txtNome resignFirstResponder];
@@ -151,12 +161,17 @@
             TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato adicionado com sucesso" buttonTitle:@"OK"];
             [alertView show];
             
+            alertView.tag=1500;
+            
             [self.previousViewController.contacts addObject: contato];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             
             TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Falha" message:@"Não foi possível adicionar o contato" buttonTitle:@"OK"];
+            
             [alertView show];
+            
+            alertView.tag=1500;
         }
     } else { //EDITA UM CONTATO JA EXISTENTE
         
@@ -168,16 +183,22 @@
             
             TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato editado com sucesso" buttonTitle:@"OK"];
             [alertView show];
+            
+            alertView.tag=1500;
             [self.navigationController popViewControllerAnimated:YES];
+            
         } else {
             
             TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível editar o contato" buttonTitle:@"OK"];
             [alertView show];
+            alertView.tag=1500;
         }
     }
     }else{
         TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Digite nos campos" buttonTitle:@"OK"];
         [alertView show];
+        
+        alertView.tag=1500;
     }
 }
 
