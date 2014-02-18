@@ -24,6 +24,12 @@
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 
 
+@property (strong, nonatomic) UIDynamicAnimator *animators;
+@property (strong, nonatomic) UIGravityBehavior *gravity;
+@property (strong, nonatomic) UICollisionBehavior *collision;
+@property (strong , nonatomic) UIDynamicItemBehavior *itemB;
+
+
 @end
 
 @implementation DCInicialViewController
@@ -75,7 +81,11 @@ UIAlertView *nconnection;
     // Force the button image to scale with its bounds.
     self.estou.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
     self.estou.contentVerticalAlignment = UIControlContentHorizontalAlignmentFill;
+    
+    
 }
+
+
 
 -(void)viewDidAppear:(BOOL)animated{
     self.estou.bounds = self.button1Bounds;
@@ -98,6 +108,13 @@ UIAlertView *nconnection;
     [attachmentBehavior setFrequency:10.0];
     //[attachmentBehavior setDamping:0.2];
     [animator addBehavior:attachmentBehavior];
+    
+    UIAttachmentBehavior *attachmentBehavior2 = [[UIAttachmentBehavior alloc] initWithItem:buttonBoundsDynamicItem attachedToAnchor:buttonBoundsDynamicItem.accessibilityActivationPoint];
+    
+    [attachmentBehavior2 setFrequency:5.0];
+    //[attachmentBehavior setDamping:0.2];
+    [animator addBehavior:attachmentBehavior2];
+    
     
     UIPushBehavior *pushBehavior = [[UIPushBehavior alloc] initWithItems:@[buttonBoundsDynamicItem] mode:UIPushBehaviorModeInstantaneous];
     pushBehavior.angle = M_PI_4;

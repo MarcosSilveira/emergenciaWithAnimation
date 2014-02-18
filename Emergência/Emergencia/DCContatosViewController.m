@@ -23,6 +23,9 @@
 
 @property BOOL pesquisando;
 
+
+
+
 @end
 
 @implementation DCContatosViewController
@@ -33,6 +36,24 @@
   
   [self configuracoesIniciais];
   [self listarContatos];
+    
+    UITableView *viewAnim=[self view];
+    
+    //viewAnim.alpha=0;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
+    UITableView *viewAnim=[self view];
+    
+    viewAnim.alpha=0;
+    
+    [UIView animateWithDuration:2.0 animations:^{
+               viewAnim.alpha = 1;
+    }];
 }
 
 //AO CLICAR NO BOTÃO DE EXCLUIR CONTATO
@@ -65,6 +86,8 @@
     [self.tableView reloadData];
   }
 }
+
+
 
 //AO CLICAR NO BOTAO DE CANCELAR A PESQUISA
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
