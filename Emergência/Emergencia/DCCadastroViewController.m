@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *senha;
 @property (weak, nonatomic) IBOutlet UITextField *csenha;
 
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+@property (nonatomic, strong) UIGravityBehavior *gravity;
+@property (nonatomic, strong) UICollisionBehavior *collision;
+
 @property (nonatomic) DCConfigs *conf;
 
 @end
@@ -48,7 +52,46 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 
+-(void)runAnimations:(NSInteger) ID{
+    _animator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
+    
+    [_animator addBehavior:_gravity];
+    [_animator addBehavior:_collision];
+    
+    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
+        _login.frame = CGRectMake(300, 300, 500, 500);
+        _senha.frame = CGRectMake(300, 300, 500, 500);
+        _csenha.frame = CGRectMake(300, 300, 500, 500);
+        _email.frame = CGRectMake(300, 300, 500, 500);
+        _login.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        _senha.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        _csenha.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        _email.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    
+    [_collision addBoundaryWithIdentifier:@"line" fromPoint:CGPointMake(10, 565) toPoint:CGPointMake(300, 565)];
+    
+    //chama a segue depois de 3 segundos da inicialização do método
+    NSTimer * timer = [[NSTimer alloc] init];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                             target:self
+                                           selector:@selector(vaipratela)
+                                           userInfo:nil
+                                            repeats:NO];
+}
+-(void)vaipratela
+{
+    [self performSegueWithIdentifier:@"cadtoInicial" sender:nil];
+}
 
 - (IBAction)cadastrar:(UIButton *)sender {
     
