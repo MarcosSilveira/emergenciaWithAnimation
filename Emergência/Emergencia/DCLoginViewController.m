@@ -69,14 +69,23 @@
 {
     [super viewDidAppear:animated];
     
-    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
-        _cruzImage.alpha = 0;
+    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
+        _cruzImage.frame = CGRectMake(10, 10, 10, 10);
+        _logLBL.frame = CGRectMake(300, 300, 500, 500);
+        _passLBL.frame = CGRectMake(300, 300, 500, 500);
+        _logLBL.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        _passLBL.transform = CGAffineTransformMakeRotation((90*M_1_PI));
+        _signBT.transform = CGAffineTransformMakeRotation((180*M_1_PI));
+        _emergBT.transform = CGAffineTransformMakeRotation((180*M_1_PI));
+        _logBT.transform = CGAffineTransformMakeRotation((180*M_1_PI));
+        
     } completion:^(BOOL finished) {
         _cruzImage.alpha = 0;
+        
     }];
     
-
-   [_collision addBoundaryWithIdentifier:@"line" fromPoint:CGPointMake(10, 565) toPoint:CGPointMake(300, 565)];
+    
+    [_collision addBoundaryWithIdentifier:@"line" fromPoint:CGPointMake(10, 565) toPoint:CGPointMake(300, 565)];
     
 }
 

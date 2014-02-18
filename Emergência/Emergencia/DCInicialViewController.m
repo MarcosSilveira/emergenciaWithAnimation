@@ -77,6 +77,7 @@ UIAlertView *nconnection;
     self.estou.contentVerticalAlignment = UIControlContentHorizontalAlignmentFill;
 }
 
+
 -(void)viewDidAppear:(BOOL)animated{
     self.estou.bounds = self.button1Bounds;
     
@@ -107,8 +108,14 @@ UIAlertView *nconnection;
     [pushBehavior setActive:TRUE];
     
     self.animator = animator;
+    
+    for (int i=0; i<5; i++)
+    {
+        _userLogado.transform = CGAffineTransformMakeRotation((M_1_PI*90+i*10));
+    }
+    
+    
 }
-
 
 - (IBAction)animar:(id)sender {
     self.estou.bounds = self.button1Bounds;
@@ -140,7 +147,7 @@ UIAlertView *nconnection;
     [pushBehavior setActive:TRUE];
     
     self.animator = animator;
-
+    
 }
 
 

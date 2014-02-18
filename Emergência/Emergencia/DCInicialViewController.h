@@ -13,6 +13,7 @@
 @property NSMutableArray *listaContatos;
 @property (nonatomic)CLLocationCoordinate2D coordenada;
 
+
 - (IBAction)btLogOut;
 
 

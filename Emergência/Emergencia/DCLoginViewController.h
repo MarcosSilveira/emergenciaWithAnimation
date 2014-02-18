@@ -10,6 +10,8 @@
 #import "DCMapasViewController.h"
 
 @interface DCLoginViewController : UIViewController<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *passLBL;
+@property (weak, nonatomic) IBOutlet UILabel *logLBL;
 @property (weak, nonatomic) IBOutlet UIButton *emergBT;
 @property (weak, nonatomic) IBOutlet UIButton *signBT;
 @property (weak, nonatomic) IBOutlet UIButton *logBT;
