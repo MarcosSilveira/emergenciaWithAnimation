@@ -10,6 +10,7 @@
 #import "DCContatos.h"
 #import "DCConfigs.h"
 #import "DCContatosViewController.h"
+#import "TLAlertView.h"
 
 @interface DCNovoContatoViewController ()
 
@@ -68,6 +69,9 @@
     
     DCContatos *contato;
     
+    
+    if(![self.txtUser.text isEqual:@""]||![self.txtNome.text isEqual:@""]){
+    
     //ADICIONA UM CONTATO NOVO
     if (self.contato == nil) {
         contato = [[DCContatos alloc]init];
@@ -78,13 +82,15 @@
         
         if ([contato salvarComIPServidor: self.conf.ip]) {
             
-            [[[UIAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato adicionado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show ];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato adicionado com sucesso" buttonTitle:@"OK"];
+            [alertView show];
             
             [self.previousViewController.contacts addObject: contato];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             
-            [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível adicionar o contato. Tente novamente mais tarde." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show ];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Falha" message:@"Não foi possível adicionar o contato" buttonTitle:@"OK"];
+            [alertView show];
         }
     } else { //EDITA UM CONTATO JA EXISTENTE
         
@@ -94,12 +100,18 @@
         
         if ([contato editarComIPServidor: self.conf.ip]) {
             
-            [[[UIAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato editado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show ];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Sucesso" message:@"Contato editado com sucesso" buttonTitle:@"OK"];
+            [alertView show];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             
-            [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível editar o contato. Tente novamente mais tarde." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show ];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Não foi possível editar o contato" buttonTitle:@"OK"];
+            [alertView show];
         }
+    }
+    }else{
+        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Digite nos campos" buttonTitle:@"OK"];
+        [alertView show];
     }
 }
 

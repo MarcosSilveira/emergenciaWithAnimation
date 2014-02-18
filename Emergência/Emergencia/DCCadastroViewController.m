@@ -8,6 +8,7 @@
 
 #import "DCCadastroViewController.h"
 #import "DCConfigs.h"
+#import "TLAlertView.h"
 
 @interface DCCadastroViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *login;
@@ -52,6 +53,7 @@
 
 - (IBAction)cadastrar:(UIButton *)sender {
     
+    if(![self.senha.text isEqual:@""]||![self.login.text isEqual:@""]){
     //Verifica senhas
     if([self.senha.text isEqual:self.csenha.text]){
         
@@ -78,16 +80,21 @@
             
             if([res isEqualToNumber:teste]){
                 //OK
-                [[[UIAlertView alloc] initWithTitle:@"Cadastro" message:@"Cadastro efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+                TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Cadastro" message:@"Cadastro efetuado com sucesso" buttonTitle:@"OK"];
+                [alertView show];
+                
                 [self performSegueWithIdentifier:@"cadtoInicial" sender:sender];
             }else{
                 //ERRO
-                [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+                TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado" buttonTitle:@"OK"];
+                [alertView show];
+               
             }
             
         }else{
             //ERRO
-            [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado com sucesso" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Cadastro não efetuado" buttonTitle:@"OK"];
+            [alertView show];
         }
         
         
@@ -95,7 +102,10 @@
         [[[UIAlertView alloc] initWithTitle:@"Erro" message:@"Senha não confere" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
     }
     
-    
+    }else{
+        TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Erro" message:@"Digite nos campos" buttonTitle:@"OK"];
+        [alertView show];
+    }
     
 }
 
