@@ -10,7 +10,7 @@
 #import "DCContatosViewController.h"
 #import "DCContatos.h"
 
-@interface DCNovoContatoViewController : UIViewController <UITextFieldDelegate>
+@interface DCNovoContatoViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUser;
 @property (weak, nonatomic) IBOutlet UITextField *txtTelefone;
@@ -20,6 +20,6 @@
 @property (strong, nonatomic) DCContatos *contato;
 
 - (IBAction)salvarContat;
-
+-(void)runAnimation:(NSInteger) ID;
 
 @end

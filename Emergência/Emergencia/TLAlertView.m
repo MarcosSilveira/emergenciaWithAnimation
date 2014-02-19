@@ -404,6 +404,8 @@ static const CGFloat separatorEachEle   = 10.0f;
     
 }
 
+//-(void)setValue:(id)value forKey:(NSString *)key
+
 - (void)AMResizeViewsWithCustomView
 {
     CGRect frameCustomAlert = self.customAlertView.frame;

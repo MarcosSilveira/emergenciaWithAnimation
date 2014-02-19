@@ -11,6 +11,7 @@
 #import "DCEmergencia.h"
 #import "DCMapasViewController.h"
 #import "DCBoundsDetail.h"
+#import "TLAlertView.h"
 
 
 @interface DCEmergenciaViewController ()
@@ -248,7 +249,10 @@ float longi;
         //confere
         if(![res isEqualToNumber:teste]){
             //Colocar Alert
-            [[[UIAlertView alloc] initWithTitle:@"Enviado" message:@"Mensagens enviadas para seus contatos" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show ];
+            
+            TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"Enviado" message:@"Mensagens enviadas para seus contatos" buttonTitle:@"OK"];
+            [alertView show];
+
         }
     }
     

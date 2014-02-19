@@ -11,6 +11,7 @@
 #import "DCNovoContatoViewController.h"
 #import "DCConfigs.h"
 #import "DCAppDelegate.h"
+#import "TLAlertView.h"
 
 
 @interface DCContatosViewController ()
@@ -50,10 +51,10 @@
     UITableView *viewAnim=[self view];
     
     
-      [UIView animateWithDuration:0.7 animations:^{
+      [UIView animateWithDuration:0.3 animations:^{
           viewAnim.alpha = 0;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1.0 animations:^{
+            [UIView animateWithDuration:0.4 animations:^{
                 viewAnim.alpha = 1.0f;
             }];
     
@@ -63,6 +64,10 @@
 //AO CLICAR NO BOTÃO DE EXCLUIR CONTATO
 - (IBAction)clickExcluir:(UIButton *)sender {
   
+    
+    
+    
+    
   UIAlertView *alertViewExclusao = [[UIAlertView alloc]
                             initWithTitle:@"Excluir contato"
                             message:@"Tem certeza que desejas excluir este contato?"
