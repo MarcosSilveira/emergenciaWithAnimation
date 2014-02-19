@@ -12,7 +12,12 @@
 
 @interface DCMapasViewController ()
 
+@property (weak, nonatomic) IBOutlet UIToolbar *TBMap;
 @property (nonatomic) DCConfigs *conf;
+@property(strong, nonatomic) UIDynamicAnimator *animator;
+@property(strong,nonatomic) UIGravityBehavior *gravity;
+@property (strong, nonatomic) UIAttachmentBehavior *attachment;
+@property(strong,nonatomic) UITouch *touch;
 
 @end
 
@@ -29,6 +34,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+    [self runAnimation];
   [gerenciadorLocalizacao startUpdatingLocation];
   [self OndeEstouAction:NULL];
   self.conf=[[DCConfigs alloc] init];
@@ -95,7 +101,16 @@
 }
 
 
+-(void)runAnimation{
+    
+    CGPoint anchor = CGPointMake(_TBMap.center.x +20, _TBMap.center.y +20);
+    _attachment = [[UIAttachmentBehavior alloc] initWithItem:self.TBMap attachedToAnchor:anchor];
+    _gravity = [[UIGravityBehavior alloc] initWithItems:@[_TBMap]];
+    _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    [_animator addBehavior:_attachment];
+    [_animator addBehavior:_gravity];
 
+}
 
 - (IBAction)OndeEstouAction:(UIBarButtonItem *)sender {
 

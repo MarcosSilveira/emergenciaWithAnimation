@@ -644,6 +644,7 @@
                     <connections>
                         <outlet property="Map1" destination="ijc-0O-k2K" id="MhN-oc-jYs"/>
                         <outlet property="OndeEstou" destination="0Sa-ys-YOf" id="WEC-YI-mI7"/>
+                        <outlet property="TBMap" destination="mSF-Nn-zR6" id="46E-KZ-FQb"/>
                         <outlet property="TIpo" destination="l8X-6g-f8J" id="CnI-g6-I9Z"/>
                         <outlet property="TipoMapa" destination="vDV-0n-k03" id="Qyz-L4-aVP"/>
                     </connections>

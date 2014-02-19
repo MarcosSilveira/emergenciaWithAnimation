@@ -22,4 +22,5 @@
 
 @property (nonatomic) float raio;
 @property (nonatomic) CLLocationCoordinate2D coordenada;
+-(void)runAnimation;
 @end
