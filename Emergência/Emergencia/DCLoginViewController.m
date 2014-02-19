@@ -52,14 +52,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
- 
-
+    
+    
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
     
     if(savedUserName != nil && savedPassword != nil) {
         [self performSegueWithIdentifier:@"goToInicio" sender:self];
-
         
     }
     
@@ -108,6 +107,15 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionRepeat animations:^{
+        
+        _cruzImage.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        _cruzImage.alpha = 0;
+        
+    }];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -204,7 +212,7 @@
         
         TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"erro" message:@"Login não efetuado" buttonTitle:@"OK"];
         [alertView show];
-
+        
         
         return NO;
     }
