@@ -52,11 +52,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+ 
+
     NSString *savedUserName = [[NSUserDefaults standardUserDefaults] stringForKey: @"username"];
     NSString *savedPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
     
     if(savedUserName != nil && savedPassword != nil) {
         [self performSegueWithIdentifier:@"goToInicio" sender:self];
+
         
     }
     
@@ -71,6 +74,8 @@
     [_animator addBehavior:_collision];
     
     [UIView animateWithDuration:2.0 delay:1.0 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
+        
+        _cruzImage.alpha = 0;
         _cruzImage.frame = CGRectMake(10, 10, 10, 10);
         _logLBL.frame = CGRectMake(300, 300, 500, 500);
         _passLBL.frame = CGRectMake(300, 300, 500, 500);
